@@ -1,0 +1,39 @@
+.profile_div_addr_1{
+	width:450px;
+	height:80px;
+	line-height:80px;
+	border:2px #000 solid;
+	margin-left:50px;
+	text-align:center;
+
+}
+
+.profile_div_addr_1 span{
+	font-size:20px;
+
+}
+.profile_li_addr_1{
+	margin-top:20px;
+	
+}
+.profile_div_addr_2{
+	margin-top:20px;
+	width:450px;
+	height:80px;
+	border:2px #000 solid;
+	margin-left:50px;
+	text-align:center;
+	line-height:80px;
+}
+#newAdd{
+	width:200px;
+	margin-left:70px;
+	margin-top:80px;
+	height:30px	;
+}
+
+#addaddr_2{
+	width:80px;
+	height:30px;
+	
+}

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间与对应映射接口的全类名一致 -->
+<mapper namespace="com.yc.zxd.mapper.UserMapper">
+
+
+	<!-- 定义sql语句 变量 -->
+	 
+
+	<select id="findUser" parameterType="String" resultType="String">
+			select * from ZUSERS
+		where uphone=#{tel}
+	</select>
+
+
+
+
+	<insert id="setUserToDai" parameterType="Duser">
+		update zusers set utype=1   where uuid=#{uuid}
+	</insert>
+	<insert id="RegisterDai" parameterType="Duser">
+		insert into dusers
+		values(seq_dusers.nextval,#{uuid},#{dsid},#{dspic},#{dscore},#{dnum},null,null)
+	</insert>
+	
+	<insert id="RegisterUser" parameterType="User">
+		insert into zusers
+		values(seq_zusers.nextval,#{upwd},#{uname},#{uphone},#{uemail},#{usex},#{upicture},#{uaddr},0,null,null)
+	</insert>
+	
+
+	<select id="getMail" parameterType="String" resultType="String">
+		select
+		uemail from ZUSERS where uphone=#{tel}
+	</select>
+
+	<update id="editPwdByTel" parameterType="User">
+		update ZUSERS set
+		upwd=#{password} where uphone=#{tel}
+	</update>
+
+	<select id="getUser" parameterType="User" resultType="User">
+		select *
+		from zusers where uphone=#{uphone} and upwd = #{upwd}
+	</select>
+
+	<select id="getUserMsg" parameterType="String" resultType="User">
+		select * from zusers where uphone=#{phonenum}
+	</select>
+
+	<update id="updatemsg" parameterType="User">
+		update zusers set
+		uname=#{uname} , upicture=#{upicture}
+		,uaddr=#{uaddr},uemail=#{uemail},usex=#{usex} where uphone=#{uphone}
+	</update>
+
+	<select id="getAddr" parameterType="int" resultType="Address">
+		select *
+		from zaddr where uuid =#{uuid}
+	</select>
+		
+		<delete id="deladdr" parameterType="int">
+			delete from zaddr where zid=#{zid}
+		</delete>
+		
+		<insert id="addaddr" parameterType="Address">
+					insert into zaddr values(seq_zid.nextval,#{uuid},#{zaddr},null,null)
+		</insert>
+		
+		<select id="getdidbyuuid" parameterType="int" resultType="Integer">
+						select did from dusers  where uuid=#{uuid}	
+		</select>
+
+
+	<select id="searchUser" parameterType="String" resultType="User">
+		select * from zusers
+		<if test="uphone != null and uphone != '' "> where uphone =#{uphone}	</if>
+	</select>
+
+	<delete id="delUserById" parameterType="string">
+		delete from zusers where
+		uuid=#{uuid}
+	</delete>
+
+
+
+</mapper>
+
+
+
+
+

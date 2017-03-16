@@ -1,0 +1,27 @@
+.ordoramsg{
+	width:180px;
+	height:30px;
+	margin-top:85px;
+	margin-left:80px;
+	
+}
+.submitorder{
+	width:60px;
+	height:30px;
+	margin-top:85px;
+	margin-left:15px
+}
+
+.btn_order{
+	border: 0 none;
+	display: block;
+	width: 100%;
+	height: 40px;
+	margin-top: 16px;
+	background-color: #ed6f00;
+	text-shadow: 1px -1px 1px #ed6f00;
+	border-radius: 6px;
+	color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+}

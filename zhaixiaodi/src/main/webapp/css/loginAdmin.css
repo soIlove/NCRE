@@ -1,0 +1,36 @@
+#loginForm {
+	width: 240px;
+	margin: 0px auto;
+	text-align:center;
+}
+
+#loginForm input {
+	width: 100%;
+	height: 18px;
+}
+
+#loginForm input#vcode {
+	width: 65%;
+	margin-left:6px;
+}
+
+#loginForm p img {
+	width: 30%;
+	vertical-align: top;
+	float:left;
+}
+
+#loginForm input#loginBtn {
+	color: gray;
+	width: 80%;
+	height: 200%;
+	clear: both;
+	marign-top:320px;
+	font-size:150%;
+	letter-spacing: 10px;
+	padding-left:20px;
+}
+
+#loginForm p label{
+	color:red;
+}

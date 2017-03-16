@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0276)https://passport.csdn.net/account/fpwd?action=forgotpassword&service=http%3A%2F%2Fmy.csdn.net%2Fmy%2Faccount%2Fchangeemail%3FverifyCode%3D%2B204827666961244a07b526cd9f7cb9dc%26st%3Dchange_mail%26ac%3Dmail%26email1%3Dxkj_0204%2540foxmail.com%26email2%3Dxkj_0204%2540foxmail.com -->
+<html>
+<style type="text/css" id="4435579743"></style>
+<head>
+<base href="/zhaixiaodi/" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>找回密码</title>
+<link type="text/css" rel="stylesheet"	href="htm/findPwd_files/bootstrap.css">
+<link type="text/css" rel="stylesheet" href="htm/findPwd_files/register.css">
+<script async="" src="htm/htm/findPwd_files/analytics.js"></script>
+<script src="htm/findPwd_files/jquery-1.9.1.min.js"	type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="htm/findPwd_files/csdn-primary.css">
+<link type="text/css" rel="stylesheet"	href="htm/findPwd_files/register-progress-forgetpass.css">
+<link type="text/css" rel="stylesheet" href="htm/findPwd_files/password-back-account.css">
+<script src="htm/findPwd_files/ga.js"></script>
+<script type="text/javascript" charset="utf-8"	src="htm/findPwd_files/tracking.js"></script>
+<script type="text/javascript" charset="utf-8"	src="htm/findPwd_files/main.js"></script>
+<script type="text/javascript" charset="utf-8" async=""	data-requirecontext="_"	
+	data-requiremodule="password-back-config"	src="htm/findPwd_files/password-back-config.js"></script>
+<script type="text/javascript" charset="utf-8" async=""	data-requirecontext="_"
+	 data-requiremodule="libs/jquery"src="htm/findPwd_files/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" async=""data-requirecontext="_" 
+	data-requiremodule="apps/password-back"	src="htm/findPwd_files/password-back.js"></script>
+								<!-- <script type="text/javascript" charset="utf-8" async=""
+									data-requirecontext="_"
+									data-requiremodule="apps/password-switch-tab"
+									src="htm/findPwd_files/password-switch-tab.js"></script> -->
+</head>
+<body>
+	<script type="text/javascript">
+		var protocol = window.location.protocol;
+		document.write('<script type="text/javascript" src="' + protocol
+				+ '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random()
+				+ '"></'+'script>');
+	</script>
+	<script type="text/javascript" src="htm/findPwd_files/repoAddr2.js"></script>
+
+	<div class="header"></div>
+	<div class="main">
+		<div class="container container-custom">
+			<div class="register-progress clearfix hidden-xs hidden-sm">
+				<div class="pross pross-ok">
+					<span class="index">1</span>输入登录帐号
+					<div class="pross-dir">
+						<span class="outside"></span><span class="inside"></span>
+					</div>
+				</div>
+				<div class="pross">
+					<span class="index">2</span>找回密码方式
+					<div class="pross-dir">
+						<span class="outside"></span><span class="inside"></span>
+					</div>
+				</div>
+				<div class="pross">
+					<span class="index">3</span>找回密码
+				</div>
+			</div>
+			<div class="register-info">
+				<h3>
+					<span class="icon"></span>
+				</h3>
+				<div class="user-info">
+					<form action="htm/findPwd2.html" 	method="post" class="form">
+						<ul>
+							<li><font color="red"> </font></li>
+							<li><span>帐号</span> 
+							<input required="required"  type="text" name="username" class="user-name">
+							</li>
+							<li><span class="code-title">验证码</span> 
+							<input required="required" type="text" name="randomCode" class="code"/> 
+							<a	href="javascript:void(0);" class="change-code">
+							<img src="randImg.jpg" id="yanzheng" alt="正在加载验证码..."
+										title="换一张" class="code-img"></a>
+							<script>
+								$("input[name='yanzheng']").css('width', '136px');
+								$("#yanzheng").click(function() {
+								$("#yanzheng").attr('src', 'randImg.jpg?' + new Date().getTime());
+								});
+							</script> </li>
+							<li class="next-btn tracking-ad" data-mod="popu_32"><span></span>
+								<input type="button" id="verify_1"  onclick="verify()"  class="next-step submit" value="下一步" /> 
+								</li>
+						<script type="text/javascript" src="js_1/findPwd.js" ></script>
+						</ul>
+					</form>
+				</div>
+				<div id="tooltip" class="tooltip-info">
+					<span class="icon-border"></span><span class="icon-bg"></span><span
+						class="strength"><em class="level">低</em><span></span><span></span><span></span></span><span
+						class="state"></span><span class="mess"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	 
+	<!-- <script data-main="/js/password-back-config.js"
+		src="./htm/findPwd_files/require.js"></script> -->
+	 
+	 
+	<!-- <script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5"
+			src="./htm/findPwd_files/notify.js"></script> -->
+		<input type="hidden" id="aa_g_data_ids">
+</body>
+</html>

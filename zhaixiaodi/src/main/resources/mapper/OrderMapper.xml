@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间与对应映射接口的全类名一致 -->
+<mapper namespace="com.yc.zxd.mapper.OrderMapper">
+
+
+	<insert id="order" parameterType="Order">
+		<selectKey keyProperty="zid" keyColumn="zid"
+			resultType="int" order="BEFORE">
+			select zid from zaddr where #{oaddr} =zaddr 
+		</selectKey>
+		
+		insert into zorders
+		values(seq_zorders.nextval,#{uuid},sysdate,#{orelname},#{ocode},#{osize},#{odesc},#{zid},#{oprice},#{otype},'未接单','0')
+	</insert>
+	
+	<select id="getIdByAddr" parameterType="String" resultType="Integer">
+		select zid from zaddr where #{zaddr} =zaddr
+	</select>
+  	
+  	<insert id="addzaccept" parameterType="Applyorder">
+  			insert into zaccept values(seq_aid.nextval,#{oid},#{adesc},#{did},sysdate,'0')
+  	</insert>
+
+	<select id="getapporderbyoid" parameterType="Integer" resultType="ProOrder">
+	select za.aid,za.did,du.uuid,du.dscore,zu.upicture,za.adesc,za.ztime,zu.uname
+	from zaccept za
+	right join dusers du on za.did=du.did
+	right join zusers zu on du.uuid=zu.uuid
+	where za.oid=#{oid}
+	</select>
+
+	<insert id="addorder" parameterType="Integer">
+	insert into orders values(seq_orders.nextval,#{aid},'0','等待收货',null,null)
+	</insert>
+
+	<update id="updatezac" parameterType="Integer">
+			update zaccept set uremain2='1' where aid=#{aid} 
+	</update>
+	
+	<delete id="deletezac" parameterType="Integer">
+				delete from zaccept where oid=#{oid} and uremain2='0'
+	</delete>
+	
+	<select id="getzordersByuuid" parameterType="Integer" resultType="Order">
+				select zo.*,za.zaddr oaddr from zorders zo left join zaddr za on
+               zo.zid=za.zid
+              where zo.uuid=#{uuid} and zo.uremain1='未接单'
+	</select>
+	
+	<update id="updateorder" parameterType="Integer">
+				update zorders set uremain1='已接单' where oid=#{oid}
+	</update>
+	
+	<select id="zxdgetordersbyuuid" parameterType="Integer" resultType="Order">
+select zo.*,zaddr oaddr from zorders zo,zaddr za where oid in(select oid from zaccept where did=(select did from dusers where uuid=#{uuid}) ) and zo.zid=za.zid and zo.uremain1='已接单'
+
+	</select>
+</mapper>
+
+
+
+
+

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间与对应映射接口的全类名一致 -->
+<mapper namespace="com.yc.zxd.mapper.AdminMapper">
+
+
+	<!-- 定义sql语句 变量 -->
+ 
+	<select id="findUser" parameterType="String" resultType="Admin">
+		select * from admin
+		where uphone=#{tel}
+	</select>
+
+ 
+
+	<update id="modifyPwd" parameterType="string">
+		update admin set
+		adpwd=#{newPwd} where adid=#{adid}
+	</update>
+
+
+	<select id="getAdmin" parameterType="Admin" resultType="Admin">
+		select *
+		from Admin where adpwd=#{adpwd} and adname = #{adname}
+	</select>
+
+
+
+
+	<!-- +++++++++++++++++++ 分页开始 ++++++++++++++++++++++++++++++++++++ -->
+	<select id="getUserPagination" parameterType="PaginationBean"
+		resultMap="PaginationBeanMap">
+		select count(1) total, ceil(count(1)/${pageSize}) totalPage,
+		${pageSize} pageSize,${currPage} currPage from zusers
+	</select>
+
+	<!-- 使用嵌套查询的方式，处理分页 -->
+	<resultMap type="PaginationBean" id="PaginationBeanMap">
+		<result column="pageSize" property="pageSize" />
+		<result column="currPage" property="currPage" />
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage}" ofType="User"
+			select="getPaginationUser" />
+	</resultMap>
+
+	<!-- #是采取占位符，$是直接取到值 -->
+	<select id="getPaginationUser" resultType="User">
+		select * from 
+			(select ad.*,rownum rn from
+				(select * from ZUSERS) ad
+			where ${pageSize} *	${currPage}>= rownum
+		)where rn >( ${currPage}-1 ) *	${pageSize}
+
+
+	</select>
+	<!-- +++++++++++++++++++ 分页结束 ++++++++++++++++++++++++++++++++++++ -->
+
+
+</mapper>
+
+
+
+
+
