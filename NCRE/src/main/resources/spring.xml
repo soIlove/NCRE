@@ -21,11 +21,11 @@
 
 	<context:component-scan base-package="com.cyber.ncre" />
 	
-	<!-- <context:property-placeholder location="classpath:db.properties" /> -->
+	<context:property-placeholder location="classpath:db.properties" />
 
 
 	<!-- 配制数据源 -->
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
@@ -38,23 +38,19 @@
 
 	
 
-	配制mybatis与spring整合的SqlSessionFactory的对象
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="typeAliasesPackage" value="com.yc.zxd.entity" />
-		注入别名定义所在的包
-		<property name="mapperLocations" value="classpath:mapper/*Mapper.xml"></property>注入注册映射文件
+		<property name="typeAliasesPackage" value="com.cyber.ncre.entity" />
+		<property name="mapperLocations" value="classpath:mapper/*Mapper.xml"></property>
 	</bean>
 
-	配制映射接口的代理实现类的bean,bean的名称为映射接口名首字母小写
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.yc.zxd.mapper"></property>
+		<property name="basePackage" value="com.cyber.ncre.mapper"></property>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 
 	
-	邮件发送配置
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="${mail.smtp.host}" />
 		<property name="username" value="${mail.smtp.username}" />
@@ -66,5 +62,5 @@
 			</props>
 		</property>
 	</bean>
-	 -->
+	 
 </beans>
