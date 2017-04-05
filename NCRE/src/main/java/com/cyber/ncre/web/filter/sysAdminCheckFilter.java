@@ -1,4 +1,4 @@
-package com.cyber.ncre.filter;
+package com.cyber.ncre.web.filter;
 
 import java.io.IOException;
 
@@ -16,11 +16,11 @@ import org.apache.logging.log4j.LogManager;
 /**
  * 校验用户登录过滤器
  * 
- * @author 7G-5HI7
+ * @author random
  *
  */
 @WebFilter("/*")
-public class UserCheckFilter extends AbstractFilter {
+public class sysAdminCheckFilter extends AbstractFilter {
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
@@ -34,24 +34,16 @@ public class UserCheckFilter extends AbstractFilter {
 		HttpServletResponse response =(HttpServletResponse) resp;
 		String requri = request.getRequestURI();
 
-		if (request.getSession().getAttribute("loginUser") == null) {//当没有登录时,为空.当其他用户登录时,这里会被清空
-			if (requri.endsWith("profile.jsp") || requri.endsWith("order.jsp")  || requri.endsWith("RegisterDai.jsp") ) {
-				// 2.满足过滤的过滤条件就终止继续请求,
-				if(request.getSession().getAttribute("errorMsg") == null){//登录成功后errorMsg本身就为空
-					request.setAttribute("errorMsg", "请登录后,再操作....");
-					System.out.println("请登录");
-				}
-				
+		if (request.getSession().getAttribute("sysUser") == null) {//当没有登录时,为空.当其他用户登录时,这里会被清空
+			if (requri.endsWith("sysmanage.jsp") || requri.endsWith("sysapply.jsp")) {
 				LogManager.getLogger().debug("请先登录再操作");
-				request.getRequestDispatcher("/page/Login.jsp").forward(request, response);
-//				response.sendRedirect("/zhaixiaodi/page/Login.jsp");
+				request.getRequestDispatcher("/page/syslogin.jsp").forward(request, response);
 				return;
 			}
 		}
 
 		// 2.不满足过滤的过滤条件就继续请求,
 		chain.doFilter(req, resp);
-
 	}
 
 }

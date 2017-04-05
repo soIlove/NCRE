@@ -6,7 +6,7 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="com.yc" level="debug"/>
+        <Logger name="com.cyber" level="debug"/>
         <Logger name="org.apache.ibatis.logging.jdbc" level="debug"/>
         <Root level="error">
             <AppenderRef ref="STDOUT"/>

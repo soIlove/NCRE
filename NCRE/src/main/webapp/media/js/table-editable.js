@@ -97,7 +97,7 @@ var TableEditable = function () {
 
                 var nRow = $(this).parents('tr')[0];
                 oTable.fnDeleteRow(nRow);
-                alert("Deleted! Do not forget to do some ajax to sync with backend :)");
+                alert("Deleted!");
             });
 
             $('#sample_editable_1 a.cancel').live('click', function (e) {
@@ -126,7 +126,7 @@ var TableEditable = function () {
                     /* Editing this row and want to save it */
                     saveRow(oTable, nEditing);
                     nEditing = null;
-                    alert("Updated! Do not forget to do some ajax to sync with backend :)");
+                    alert("Updated!");
                 } else {
                     /* No edit in progress - let's start one */
                     editRow(oTable, nRow);

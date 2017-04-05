@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyber.ncre.mapper.sysAdminMapper">
+
+	<select id="findsysAdmin" parameterType="sysAdmin" resultType="sysAdmin">
+		select * from sysadmin where syname = #{syname} and sypwd = #{sypwd}
+	</select>
+	
+	<resultMap type="academyAdmin" id="academyAdminMap">
+		<id property="acid" column="acid" />
+		<result property="acloginname" column="acloginname" />
+		<result property="acemail" column="acemail" />
+		<result property="acloginpwd" column="acloginpwd" />
+		<result property="acsex" column="acsex" />
+		<result property="acpicture" column="acpicture" />
+		<result property="acwork" column="acwork" />
+		<result property="acacademyid" column="acacademyid" />
+		<result property="acphone" column="acphone" />
+		<result property="actime" column="actime" />
+		<result property="acstatus" column="acstatus" />
+		<association property="academy" javaType="academy">
+			<id property="aid" column="aid" />
+			<result property="aname" column="aname" />
+		</association>
+	</resultMap>
+	
+	<select id="findapply" resultMap="academyAdminMap">
+		select * from academyadmin am inner join academy ac on am.acacademyid=ac.aid and am.acstatus='待审核'
+	</select>
+			
+	
+
+</mapper>

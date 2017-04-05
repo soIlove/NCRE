@@ -1,3 +1,4 @@
+
 --计算机等级考试报名系统数据库用例：
 		create table students{               --学生注册表
 			sid int primary key,  --学生编号
@@ -38,13 +39,6 @@
 			
 		}
 		
-		create table academy{    --学院表
-			aid int primary key ,--学院id
-			aname varchar2(20),--学院名称
-			remain1 varchar2(30) ,
-			
-						
-		}
 		
 		create table news{   --新闻通知表
 			nid int primary key,--新闻id
@@ -79,18 +73,6 @@
 
 		}
 		
-		create table academyadmin{       --院系管理员表
-			acid int primary key,
-			acloginid varchar2(20),--登录账号
-			acloginpwd varchar2(20),--登录密码
-			acsex varchar2(2) check in('男','女'),--性别
-			acpicture varchar2(50),   --用户证件照
-			acacademy varchar2(20), --所在学院
-			acphone varchar2(20), --联系方式，
-			acemail varchar2(20), --邮箱
-			acwork varchar2(20),--职业
-			acstatus varchar2(8) default '待审核' check in('审核通过','未通过','待审核')
-		}
 		
 		create table testclass{    --考场表
 			teid int primary key,
@@ -100,19 +82,39 @@
 		}
 		
 		
-		create table sysadmin{	--系统管理员
+		/*************已创建*******************/
+		create table sysadmin(	--系统管理员
 			syid int primary key,
-			
 			syname varchar2(12),--管理员姓名
-			sypwd varchar2(16),--登录密码
-			
+			sypwd varchar2(16)--登录密码
+		)
+		insert into sysadmin values(1,'admin','a');
 		
+		create table academy(   --学院表
+			aid int primary key ,--学院id
+			aname varchar2(20),--学院名称
+			remain1 varchar2(30)
+		)
+		insert into  academy values(1,'计信学院','');
+		select * from academy;
 		
-		}
-		
-		
-		
-	
+		create table academyadmin(      --院系管理员表
+			acid int primary key,
+			acloginname varchar2(16),--姓名
+			acemail varchar2(20), --注册邮箱
+			acloginpwd varchar2(16),--登录密码
+			acsex varchar2(2) check (acsex in('男','女')),--性别
+			acpicture varchar2(50),  --用户证件照地址
+			acwork varchar2(20),	--职位
+			acacademyid int, --所属学院
+			acphone varchar2(20), --联系方式，
+			actime varchar2(12), --注册时间
+			acstatus varchar2(8) default '待审核' check (acstatus in('审核通过','未通过','待审核'))
+		)
+		alter table academyadmin ADD CONSTRAINT FK_academyadmin_acacademyid foreign key(acacademyid) references academy(aid) on delete cascade;
+		insert into academyadmin values(1000,'粟辉','1134725937@qq.com','961014','男','/picKu/8.jpg','院长',1,'18216062440','2017-03-21',default);
+		insert into academyadmin values(1001,'刘婷玉','1436586658@qq.com','961014','女','/picKu/3.jpg','书记',1,'18216034297','2017-03-22',default);
+		select * from academyadmin am inner join academy ac on am.acacademyid=ac.aid and am.acstatus='待审核'
 		
 		
 		
