@@ -97,9 +97,9 @@ var Login = function () {
 	                error.addClass('help-small no-left-padding').insertAfter(element.closest('.input-icon'));
 	            },
 
-	            submitHandler: function (form) {
+	          /*  submitHandler: function (form) {
 	                window.location.href = "index.html";
-	            }
+	            }*/
 	        });
 
 	        $('.forget-form input').keypress(function (e) {
@@ -127,22 +127,34 @@ var Login = function () {
 	            focusInvalid: false, // do not focus the last invalid input
 	            ignore: "",
 	            rules: {
-	                username: {
+	            	acloginname: {
 	                    required: true
 	                },
-	                password: {
+	                acloginpwd: {
 	                    required: true
 	                },
 	                rpassword: {
 	                    equalTo: "#register_password"
 	                },
-	                email: {
+	                acemail: {
 	                    required: true,
 	                    email: true
 	                },
+	                acsex: {
+	                    required: true
+	                },
+	                
+	                acwork: {
+	                    required: true
+	                },
+	                
+	                acphone: {
+	                    required: true
+	                },
+	                
 	                tnc: {
 	                    required: true
-	                }
+	                },
 	            },
 
 	            messages: { // custom messages for radio buttons and checkboxes
@@ -173,9 +185,9 @@ var Login = function () {
 	                }
 	            },
 
-	            submitHandler: function (form) {
+	            /*submitHandler: function (form) {
 	                window.location.href = "index.html";
-	            }
+	            }*/
 	        });
 
 	        jQuery('#register-btn').click(function () {

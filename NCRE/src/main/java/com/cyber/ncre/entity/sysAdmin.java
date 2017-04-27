@@ -1,7 +1,11 @@
 package com.cyber.ncre.entity;
 
-public class sysAdmin {
+import java.io.Serializable;
 
+public class sysAdmin implements Serializable{
+
+	
+	private static final long serialVersionUID = 1L;
 				/*用户编号*/
 	private Integer syid;
 				/*用户名称*/

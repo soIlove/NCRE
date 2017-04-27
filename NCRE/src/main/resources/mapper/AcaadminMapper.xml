@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyber.ncre.mapper.AcaadminMapper">
+	<!-- 院系管理员的登录操作 -->
+	<select id="login" parameterType="academyAdmin" resultType="academyAdmin">
+		select * from academyadmin where acemail = #{acemail} and acloginpwd = #{acloginpwd}
+	</select>
+	
+	<!-- 查询学生报名情况，并可以进行审核 -->
+	<select id="findappmsg" parameterType="Integer" resultType="CompuTestMsg">
+	select cid, st.sname,en.epicture,st.ssex,st.sclass,en.enation,en.eidentif,en.ephone,te.tename,co.cstatus from computest co 
+      left join  enrollmsg en 
+      on co.eid=en.eid
+      left join students st
+      on en.sid=st.sid
+      left join testclas te
+      on co.teid=te.teid 
+      left join academy ac
+      on st.sacademy=ac.aname
+      where ac.aid=#{acmyid} and cstatus='审核通过' or cstatus='未审核'    
+      order by st.sclass
+	</select>
+			
+		<!-- 审核通过 -->	
+	<update id="agreeApply" parameterType="int">
+		
+		update computest set cstatus='审核通过' where cid=#{cid}
+	
+	</update>
+	
+	<!--添加未通过原因  -->
+	<insert id="addNPLog" >
+	
+		insert into notThrowLog values(seq_noid.nextval,#{0},#{1})
+	
+	</insert>
+	
+	
+	<update id="disagreeApply" parameterType="int">
+		    update computest set cstatus='未通过' where cid=#{cid}
+	</update>
+	
+	
+	
+	
+	<!-- 查询学生报名情况，并可以进行审核 -->
+	<select id="findNPmsg" parameterType="Integer" resultType="CompuTestMsg">
+	select cid, st.sname,en.epicture,st.ssex,st.sclass,en.enation,en.eidentif,en.ephone,te.tename,co.cstatus,no.nocontent from computest co 
+      left join  enrollmsg en 
+      on co.eid=en.eid
+      left join students st
+      on en.sid=st.sid
+      left join testclas te
+      on co.teid=te.teid 
+      left join academy ac
+      on st.sacademy=ac.aname
+      left join notthrowlog no
+      on co.cid=no.cid
+      where ac.aid=#{acmyid} and cstatus='未通过'    
+      order by st.sclass
+	</select>
+
+	<delete id="removeApply" parameterType="int">
+			 delete from enrollmsg where eid=(select eid from computest where cid=#{cid})
+	</delete>
+	
+	
+	<select id="findacademy" resultType="academy">
+		select * from academy
+	</select>
+	
+	<!-- 院系管理员注册 -->
+	<insert id="RegistExaminee" parameterType="academyAdmin">
+		insert into academyadmin values(seq_acid.nextval,#{acloginname},#{acemail},#{acloginpwd},#{acsex},#{acpicture},#{acwork},#{acacademyid},#{acphone},sysdate,'待审核')
+	</insert>
+</mapper>

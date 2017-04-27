@@ -22,7 +22,6 @@ public class LoadDataListener implements ServletContextListener {
     		File dir=new File (new File(sce.getServletContext().getRealPath("/")).getParentFile(),ServletUtil.UPLOAD_DIR_NAME);
     		if(! dir.exists()){
     			dir.mkdirs();
-    			LogManager.getLogger().debug("文件上传的路径不存在创建新文件路径"+dir);		
     		}
     		ServletUtil.UPLOAD_DIR=dir.getAbsolutePath();
     

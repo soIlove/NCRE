@@ -1,4 +1,4 @@
-package com.cyber.ncre.web.filter;
+/*package com.cyber.ncre.web.filter;
 
 import java.io.IOException;
 
@@ -13,37 +13,38 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 
-/**
- * 校验用户登录过滤器
+*//**
+ * 鏍￠獙鐢ㄦ埛鐧诲綍杩囨护鍣�
  * 
  * @author random
  *
- */
+ *//*
 @WebFilter("/*")
 public class sysAdminCheckFilter extends AbstractFilter {
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		LogManager.getLogger().debug("使用校验用户登录过滤器,进行权限控制,我在UserCheckFilter里...");
+		LogManager.getLogger().debug("浣跨敤鏍￠獙鐢ㄦ埛鐧诲綍杩囨护鍣�杩涜鏉冮檺鎺у埗,鎴戝湪UserCheckFilter閲�..");
 	}
 
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
-		// 1.过滤哪些请求页面
+		// 1.杩囨护鍝簺璇锋眰椤甸潰
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response =(HttpServletResponse) resp;
 		String requri = request.getRequestURI();
 
-		if (request.getSession().getAttribute("sysUser") == null) {//当没有登录时,为空.当其他用户登录时,这里会被清空
+		if (request.getSession().getAttribute("sysUser") == null) {//褰撴病鏈夌櫥褰曟椂,涓虹┖.褰撳叾浠栫敤鎴风櫥褰曟椂,杩欓噷浼氳娓呯┖
 			if (requri.endsWith("sysmanage.jsp") || requri.endsWith("sysapply.jsp")) {
-				LogManager.getLogger().debug("请先登录再操作");
+				LogManager.getLogger().debug("璇峰厛鐧诲綍鍐嶆搷浣�");
 				request.getRequestDispatcher("/page/syslogin.jsp").forward(request, response);
 				return;
 			}
 		}
 
-		// 2.不满足过滤的过滤条件就继续请求,
+		// 2.涓嶆弧瓒宠繃婊ょ殑杩囨护鏉′欢灏辩户缁姹�
 		chain.doFilter(req, resp);
 	}
 
 }
+*/

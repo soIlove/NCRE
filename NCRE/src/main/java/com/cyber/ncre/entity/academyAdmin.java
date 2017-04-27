@@ -1,7 +1,10 @@
 package com.cyber.ncre.entity;
 
-public class academyAdmin {
+import java.io.Serializable;
 
+public class academyAdmin implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	/* 用户编号 */
 	private Integer acid;
 	/* 用户名称 */
@@ -27,7 +30,10 @@ public class academyAdmin {
 	/* 学院情况 */
 	private academy academy;
 
+
+
 	public academyAdmin() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 

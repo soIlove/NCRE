@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html >
 <html>
 
@@ -62,6 +63,8 @@
 <body class="page-header-fixed">
 
 	<!-- BEGIN HEADER -->
+	<input id="acname" type="hidden" value="${acaAdmin.acloginname}">
+	<input id="acmyid" type="hidden" value="${acaAdmin.acacademyid}">
 
 	<div class="header navbar navbar-inverse navbar-fixed-top">
 
@@ -96,13 +99,13 @@
 					<li class="dropdown user"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> <!-- <img alt="" src="media/image/avatar1_small.jpg" />-->
 
-							<span class="username">${sysUser.syname}</span> <i
+							<span class="username">${acaAdmin.acloginname}</span> <i
 							class="icon-angle-down"></i>
 
 					</a>
 
 						<ul class="dropdown-menu">
-							<li><a href="login.html"><i class="icon-key"></i> Log
+							<li><a href="page/acalogin.jsp"><i class="icon-key"></i> Log
 									Out</a></li>
 						</ul></li>
 
@@ -141,32 +144,15 @@
 
 
 				<li class="active "><a href="javascript:;"> <i
-						class="icon-th"></i> <span class="title">核心管理</span> <span
+						class="icon-th"></i> <span class="title">院系考生管理</span> <span
 						class="selected"></span> <span class="arrow "></span>
 
 				</a>
 
 					<ul class="sub-menu">
 
-
-						<li class=""><a href=""> 申请管理</a></li>
-
-
-						<li class=""><a href=""> 学院管理 </a></li>
-
-
-						<li class=""><a href=""> 宣传管理</a></li>
-
-
-						<li class=""><a href=""> 报考管理</a></li>
-
-
-						<li class=""><a href=""> 考场管理 </a></li>
-
-
-						<li class=""><a href=""> 分布管理</a></li>
-
-
+						<li class=""><a href="page/acaApply.jsp"> 报名审核</a></li>
+						<li class=""><a href="acaNPMan.jsp"> 未通过管理</a></li>
 
 					</ul></li>
 
@@ -301,7 +287,7 @@
 						<h3 class="page-title">核心管理</h3>
 
 						<ul class="breadcrumb">
-							<li><i class="icon-home"></i> <a href="page/sysmanage.jsp">Home</a>
+							<li><i class="icon-home"></i> <a href="page/acaindex.jsp">Home</a>
 						</ul>
 					</div>
 
@@ -310,10 +296,10 @@
 				<div class="row-fluid">
 
 					<div class="span12">
-					  			<h1>here is main position</h1>
-					  			
-					  			<a></a>
-					</div>
+								<center><h2 style="color:#666;margin-top: 100px;">Welcome to use NCRE.SYSTEM</h2></center>								
+												
+												
+					  			</div>
 				</div>
 			</div>
 		</div>
@@ -383,6 +369,8 @@
 	<script src="media/js/app.js"></script>
 
 	<script src="media/js/table-editable.js"></script>
+	<script src="js/acaApply.js" ></script>
+	
 
 	<script>
 		jQuery(document).ready(function() {
@@ -393,7 +381,7 @@
 
 		});
 	</script>
-
+	
 </body>
 
 <!-- END BODY -->
