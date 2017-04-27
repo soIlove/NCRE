@@ -1,7 +1,11 @@
 package com.cyber.ncre.entity;
 
-public class academyAdmin {
+import java.io.Serializable;
 
+public class academyAdmin implements Serializable {
+
+	private static final long serialVersionUID = 8736933287687560023L;
+	
 	/* 用户编号 */
 	private Integer acid;
 	/* 用户名称 */

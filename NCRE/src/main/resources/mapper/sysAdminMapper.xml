@@ -27,9 +27,101 @@
 	</resultMap>
 	
 	<select id="findapply" resultMap="academyAdminMap">
-		select * from academyadmin am inner join academy ac on am.acacademyid=ac.aid and am.acstatus='待审核'
+		select * from academyadmin am inner join academy ac on am.acacademyid=ac.aid and am.acstatus='待审核' order by aid desc
 	</select>
-			
 	
+	<update id="modifyAcstatusPass" parameterType="academyAdmin">
+		update academyadmin set acstatus = '审核通过' where acid = #{acid}
+	</update>
+	
+	<update id="modifyAcstatusNPass" parameterType="academyAdmin">
+		update academyadmin set acstatus = '未通过' where acid = #{acid}
+	</update>
+	
+	
+	<resultMap type="clazz" id="academyMap">
+		<id property="cid" column="cid" />
+		<result property="cname" column="cname" />
+		<result property="acacademyid" column="acacademyid" />
+		<association property="academy" javaType="academy">
+			<id property="aid" column="aid" />
+			<result property="aname" column="aname" />
+		</association>
+	</resultMap>
+	
+	<select id="findacadMsg" resultMap="academyMap">
+		select * from clazz c inner join academy a on c.acacademyid=a.aid order by aid,cid
+	</select>
+	
+	<update id="setacadMsg" parameterType="academy">
+		update academy set aname = #{aname} where aid = #{aid}
+	</update>
+	
+	<update id="setclazzMsg" parameterType="clazz">
+		update clazz set cname = #{cname} where cid = #{cid}
+	</update>
+	
+	<delete id="delclazzMsg" parameterType="clazz">
+		delete clazz where cid = #{cid}
+	</delete>
+	
+	<select id="selectAcadByName" parameterType="academy" resultType="academy">
+		select * from academy where aname = #{aname}
+	</select>
+	
+	<insert id="addAcademy" parameterType="academy">
+		insert into academy values(seq_academy_aid.nextval,#{aname},'')
+	</insert>
+	
+	<insert id="addClazz" parameterType="clazz">
+		insert into clazz values(seq_clazz_cid.nextval,#{cname},(select max(aid) from academy),'')
+	</insert>
+			
+	<insert id="addExistClazz" parameterType="clazz">
+		insert into clazz values(seq_clazz_cid.nextval,#{cname},#{acacademyid},'')
+	</insert>
+	
+	<select id="selectClazz" parameterType="clazz" resultType="clazz">
+		select * from clazz where cname=#{cname} and acacademyid=#{acacademyid}
+	</select>
 
+	<select id="getnewMsg" resultType="news">
+		select news_id,news_name,news_text,news_pic,to_char(news_date,'yyyy-mm-dd') news_date from news order by news_date desc
+	</select>
+	
+	<delete id="delnewMsg" parameterType="news">
+		delete news where news_id = #{news_id}
+	</delete>
+	
+	<update id="updatenews" parameterType="news">
+		update news set news_name=#{news_name},news_text=#{news_text}
+		<if test="news_pic!=null and news_pic!=''">,news_pic=#{news_pic}</if>
+		where news_id=#{news_id}
+	</update>
+	
+	<insert id="addnews" parameterType="news">
+		insert into news values(seq_news_id.nextval,#{news_name},#{news_text},
+		<choose>
+			<when test="news_pic!=null and news_pic!=''">#{news_pic}</when>
+			<otherwise>''</otherwise>
+		</choose>
+		,sysdate)
+	</insert>
+	
+	<select id="findkaoMsg" resultType="kaoroom">
+		select * from kaoroom order by krid
+	</select>
+	
+	<update id="modifykaoRoom" parameterType="kaoroom">
+		update kaoroom set krclass = #{krclass},krtotal = #{krtotal},krlou = #{krlou},kraddr = #{kraddr}
+		where krid = #{krid}
+	</update>
+	
+	<delete id="delkaoRoom" parameterType="kaoroom">
+		delete kaoroom where krid = #{krid}
+	</delete>
+	
+	<insert id="addkaoRoom" parameterType="kaoroom">
+		insert into kaoroom values(seq_kaoroom_kaid.nextval,#{krclass},#{krtotal},#{krlou},#{kraddr})
+	</insert>
 </mapper>

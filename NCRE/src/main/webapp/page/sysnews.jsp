@@ -58,6 +58,7 @@
 	href="media/css/select2_metro.css" />
 
 <link rel="stylesheet" href="media/css/DT_bootstrap.css" />
+<link rel="stylesheet" href="css/news.css" />
 
 <!-- END PAGE LEVEL STYLES -->
 
@@ -174,6 +175,7 @@
 
 
 					</ul></li>
+
 			</ul>
 
 			<!-- END SIDEBAR MENU -->
@@ -293,12 +295,12 @@
 
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 
-						<h3 class="page-title">申请管理</h3>
+						<h3 class="page-title">新闻管理</h3>
 
 						<ul class="breadcrumb">
 							<li><i class="icon-home"></i> <a href="page/sysmanage.jsp">主页</a><i
 								class="icon-angle-right"></i></li>
-							<li><a href="page/sysapply.jsp">申请管理</a></li>
+							<li><a href="page/sysnews.jsp">新闻管理</a></li>
 						</ul>
 					</div>
 
@@ -314,7 +316,7 @@
 							<div class="portlet-title">
 
 								<div class="caption">
-									<i class="icon-edit"></i>申请数据
+									<i class="icon-edit"></i>新闻数据
 								</div>
 
 								<div class="tools">
@@ -322,7 +324,7 @@
 									<a href="javascript:;" class="collapse"></a> <a
 										href="#portlet-config" data-toggle="modal" class="config"></a>
 
-									<a href="javascript:;" class="reload"></a> <a
+									<a href="sysadmin/findacad" class="reload"></a> <a
 										href="javascript:;" class="remove"></a>
 
 								</div>
@@ -332,6 +334,16 @@
 							<div class="portlet-body">
 
 								<div class="clearfix">
+
+									<div class="btn-group">
+
+										<button onclick="openAddnews()" class="btn green">
+
+											Add New <i class="icon-plus"></i>
+
+										</button>
+
+									</div>
 
 									<div class="btn-group pull-right">
 
@@ -354,45 +366,35 @@
 										<tr>
 											<th style="text-align: center;">Id</th>
 
-											<th style="text-align: center;">Username</th>
+											<th style="text-align: center;">Name</th>
 
-											<th style="text-align: center;">Email</th>
+											<th style="text-align: center;">Text</th>
+											
+											<th style="text-align: center;">Pic</th>
 
-											<th style="text-align: center;">Sex</th>
+											<th style="text-align: center;">Date</th>
 
-											<th style="text-align: center;">Picture</th>
+											<th style="text-align: center;">Edit</th>
 
-											<th style="text-align: center;">Job</th>
-
-											<th style="text-align: center;">Aacademy</th>
-
-											<th style="text-align: center;">Tel</th>
-
-											<th style="text-align: center;">Applytime</th>
-
-											<th style="text-align: center;">Agree</th>
-
-											<th style="text-align: center;">Disagree</th>
+											<th style="text-align: center;">Delete</th>
 
 										</tr>
 
 									</thead>
-									<tbody id="applydata">
-										<c:forEach var="applyinfo" items="${applyMsg}">
+									<tbody>
+										<c:forEach var="newsinfo" items="${newsMsg}">
 											<tr class=''>
-												<td style="text-align: center;">${applyinfo.acid}</td>
-												<td style="text-align: center;">${applyinfo.acloginname}</td>
-												<td style="text-align: center;">${applyinfo.acemail}</td>
-												<td style="text-align: center;">${applyinfo.acsex}</td>
-												<td style="text-align: center;"><img style="width:80px;hight:40px;" src='${applyinfo.acpicture}'></td>
-												<td style="text-align: center;">${applyinfo.acwork}</td>
-												<td style="text-align: center;">${applyinfo.academy.aname}</td>
-												<td style="text-align: center;">${applyinfo.acphone}</td>
-												<td style="text-align: center;">${applyinfo.actime}</td>
-												<td style="text-align: center;"><a class='' href='javascript:void(0)' onclick="doAgree(this)">Agree</a></td>
-												<td style="text-align: center;"><a class='' href='javascript:void(0)' onclick="doDisagree(this)">Disagree</a></td>
+												<td style="text-align: center;">${newsinfo.news_id}</td>
+												<td style="text-align: center;">${newsinfo.news_name}</td>
+												<td style="text-align: center;">${newsinfo.news_text}</td>
+												<td style="text-align: center;"><img src="${newsinfo.news_pic}" style="width:200px;height:150px;"></td>
+												<td style="text-align: center;">${newsinfo.news_date}</td>
+												<td style="text-align: center;"><a class="" onclick="edit(this)"
+													href="javascript:void(0)">Edit</a></td>
+												<td style="text-align: center;"><a class="" onclick="del(this)"
+													href="javascript:void(0)">Delete</a></td>
 											</tr>
-										</c:forEach> 
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -400,7 +402,9 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
+
 		<div class="footer">
 
 			<div class="footer-inner">2017 &copy; NCRE. Admin Cyber Oar.</div>
@@ -414,6 +418,51 @@
 			</div>
 
 		</div>
+
+		<div id="newsAddDiv">
+			<div class="portlet box blue">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="icon-edit"></i>添加新闻信息
+					</div>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<form action='javascript:void(0)' method='post' enctype='multipart/form-data' id="addform">
+					<ul class="newsul">
+						<li>新闻标题: <input type='text' name='news_name' ></li>
+						<li>新闻正文: <textarea name="news_text" ></textarea></li>
+						<li>图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片:<img src='images/not_pic.jpg' onclick='clickPic(this)'><input type='file' name='picData' style='display:none;' onchange='changePic(this)'></li>
+						<li><button class="btn green">添加 </button>
+						<span onclick="closeAddnews()" class="btn red">关闭</span></li>
+					</ul>
+				</form>
+			</div>
+		</div>
+		
+		<div id="newsModifyDiv">
+			<div class="portlet box blue">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="icon-edit"></i>修改新闻信息
+					</div>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<form action='javascript:void(0)' method='post' enctype='multipart/form-data' id="modifyform">
+					<ul class="newsul">
+						<li>编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号: <input type='text' id="news_id"  name="news_id" readonly="readonly"></li>
+						<li>新闻标题: <input type='text' name='news_name' id="news_name"></li>
+						<li>新闻正文: <textarea name="news_text" id="news_text"></textarea></li>
+						<li>图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片:<img src='images/not_pic.jpg' onclick='clickPic(this)' id="choiceImg"><input type='file' name='picData' style='display:none;' onchange='changePic(this)'></li>
+						<li><button class="btn green">修改 </button>
+						<span onclick="closeModifynews()" class="btn red">关闭</span></li>
+					</ul>
+					
+				</form>
+			</div>
+		</div>
+
 
 		<!-- END FOOTER -->
 
@@ -466,8 +515,10 @@
 		<script src="media/js/app.js"></script>
 
 		<script src="media/js/table-editable.js"></script>
+		
+		<script src="easyui/jquery.easyui.min.js"></script>
 
-		<script src="js/sysapply.js"></script>
+		<script src="js/sysnews.js"></script>
 
 		<script>
 			jQuery(document).ready(function() {

@@ -30,29 +30,17 @@
 		
 		}
 		
-		create table class{      --班级表
-			cid int primary key, --班级id
-			cname varchar2(20),--班级名称
-			aid int foreigen key references academy(aid) on delete cascade, -- 所在学院
-			remain1 varchar2(30) ,
-			
-		}
-		
 		
 		create table news{   --新闻通知表
 			nid int primary key,--新闻id
 			toid int foreigen key references topic(toid) on delete cascade,--新闻标题
 			ntext varchar2(10000),--新闻正文
-			remain1 varchar2(30) ,
-		
-		
 		}
 		
 		create table topic{  --新闻标题表
 			toid int primary key, --标题id
 			toname varchar2(60),--标题名称	
 			todate Date ,--发布时间
-			remain1 varchar2(30) ,	
 		}
 		
 		create table computest{  --报考表                                       《关键表》
@@ -73,12 +61,6 @@
 		}
 		
 		
-		create table testclass{    --考场表
-			teid int primary key,
-			teclass varchar2(14),--教室编号
-			testutotal varchar2(12),--教室最大容量
-	
-		}
 		
 		
 		/*************已创建*******************/
@@ -92,9 +74,9 @@
 		create table academy(   --学院表
 			aid int primary key ,--学院id
 			aname varchar2(20),--学院名称
-			remain1 varchar2(30)
 		)
 		insert into  academy values(1,'计信学院','');
+		create sequence seq_academy_aid start with 2;
 		select * from academy;
 		
 		create table academyadmin(      --院系管理员表
@@ -113,11 +95,45 @@
 		alter table academyadmin ADD CONSTRAINT FK_academyadmin_acacademyid foreign key(acacademyid) references academy(aid) on delete cascade;
 		insert into academyadmin values(1000,'粟辉','1134725937@qq.com','961014','男','/picKu/8.jpg','院长',1,'18216062440','2017-03-21',default);
 		insert into academyadmin values(1001,'刘婷玉','1436586658@qq.com','961014','女','/picKu/3.jpg','书记',1,'18216034297','2017-03-22',default);
-		select * from academyadmin am inner join academy ac on am.acacademyid=ac.aid and am.acstatus='待审核'
+		select * from academyadmin am inner join academy ac on am.acacademyid=ac.aid and am.acstatus='待审核' order by actime desc
+		update academyadmin set acstatus = '待审核' where acid = 1000
+		
+		create table clazz(      --班级表
+			cid int primary key, --班级id
+			cname varchar2(20),--班级名称
+			acacademyid int, --所属学院
+		)
+		rename class to clazz;
+		alter table clazz ADD CONSTRAINT FK_class_acacademyid foreign key(acacademyid) references academy(aid) on delete cascade;
+		select * from clazz c inner join academy a on c.acacademyid=a.aid order by cid,aid;
+		insert into clazz values(1,'网络1402',1,'');
+		insert into clazz values(3,'网络1401',(select aid from academy where aname='计算机与信息科学学院'),'');
+		create sequence seq_clazz_cid start with 4;
+		
+		create table news(				--新闻通知表
+			news_id int primary key,	--新闻id
+			news_name varchar2(60),		--标题名称	
+			news_text varchar2(1000),	--新闻正文(不得超过五百字)
+			news_pic varchar2(100),		--新闻图片
+			news_date date				--发布时间
+		);
+		insert into news values(2,'大学四级考试改革','自2017年6月份开始，大学英语四级考试全面改革，满分750分将缩为100分','/picKu/1.jpg',sysdate);
+		create sequence seq_news_id start with 2;
+		select * from news;
+		alter table news add ;
+		drop table news
 		
 		
-		
-		
+		create table kaoroom(		--考场表
+			krid int primary key,
+			krclass varchar2(20),	--考场名称		第15考室
+			krtotal varchar2(10),	--教室最大容量		40
+			krlou varchar2(20), 	--考场所属楼层		2号楼（信息楼）
+			kraddr varchar2(20)		--考场位置			612
+		)
+		insert into kaoroom values(1,'第1考室','40','材化楼','414');
+		select * from kaoroom;
+		create sequence seq_kaoroom_kaid start with 1;
 		
 		
 		

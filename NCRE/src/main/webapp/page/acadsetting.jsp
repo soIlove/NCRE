@@ -1,4 +1,7 @@
+<%@page import="com.cyber.ncre.entity.academyAdmin"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -55,6 +58,7 @@
 	href="media/css/select2_metro.css" />
 
 <link rel="stylesheet" href="media/css/DT_bootstrap.css" />
+<link rel="stylesheet" href="css/acadsetting.css" />
 
 <!-- END PAGE LEVEL STYLES -->
 
@@ -109,8 +113,8 @@
 					</a>
 
 						<ul class="dropdown-menu">
-							<li><a href="sysadmin/logout" id="logout"><i class="icon-key"></i> Log
-									Out</a></li>
+							<li><a href="sysadmin/logout"><i class="icon-key"></i>
+									Log Out</a></li>
 						</ul></li>
 
 
@@ -167,8 +171,6 @@
 
 
 						<li class=""><a href="sysadmin/findkao"> 考场管理 </a></li>
-
-
 
 
 
@@ -293,10 +295,12 @@
 
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 
-						<h3 class="page-title">主页</h3>
+						<h3 class="page-title">院系管理</h3>
 
 						<ul class="breadcrumb">
-							<li><i class="icon-home"></i> <a href="page/sysmanage.jsp">主页</a>
+							<li><i class="icon-home"></i> <a href="page/sysmanage.jsp">主页</a><i
+								class="icon-angle-right"></i></li>
+							<li><a href="page/acadsetting.jsp">院系管理</a></li>
 						</ul>
 					</div>
 
@@ -305,45 +309,154 @@
 				<div class="row-fluid">
 
 					<div class="span12">
-						<center><h2 style="color:#666;margin-top: 100px;">Welcome to use NCRE.SYSTEM</h2></center>
+						<!-- BEGIN EXAMPLE TABLE PORTLET-->
+
+						<div class="portlet box blue">
+
+							<div class="portlet-title">
+
+								<div class="caption">
+									<i class="icon-edit"></i>院系数据
+								</div>
+
+								<div class="tools">
+
+									<a href="javascript:;" class="collapse"></a> <a
+										href="#portlet-config" data-toggle="modal" class="config"></a>
+
+									<a href="sysadmin/findacad" class="reload"></a> <a
+										href="javascript:;" class="remove"></a>
+
+								</div>
+
+							</div>
+
+							<div class="portlet-body">
+
+								<div class="clearfix">
+
+									<div class="btn-group">
+
+										<button onclick="addnew()" class="btn green">
+
+											Add New <i class="icon-plus"></i>
+
+										</button>
+
+									</div>
+
+									<div class="btn-group pull-right">
+
+										<button class="btn dropdown-toggle" data-toggle="dropdown">
+											Tools <i class="icon-angle-down"></i>
+
+										</button>
+
+										<ul class="dropdown-menu pull-right">
+											<li><a href="#">Export to Excel</a></li>
+										</ul>
+									</div>
+								</div>
+
+								<table class="table table-striped table-hover table-bordered"
+									id="sample_editable_1">
+
+									<thead>
+
+										<tr>
+											<th style="text-align: center;">AacademyId</th>
+
+											<th style="text-align: center;">Aacademy</th>
+
+											<th style="text-align: center;">ClassId</th>
+
+											<th style="text-align: center;">Class</th>
+
+											<th style="text-align: center;">Edit</th>
+
+											<th style="text-align: center;">Delete</th>
+
+										</tr>
+
+									</thead>
+									<tbody>
+										<c:forEach var="acadinfo" items="${acadMsg}">
+											<tr class=''>
+												<td style="text-align: center;">${acadinfo.academy.aid}</td>
+												<td style="text-align: center;">${acadinfo.academy.aname}</td>
+												<td style="text-align: center;">${acadinfo.cid}</td>
+												<td style="text-align: center;">${acadinfo.cname}</td>
+												<td style="text-align: center;"><a class="" onclick="edit(this)"
+													href="javascript:void(0)">Edit</a></td>
+												<td style="text-align: center;"><a class="" onclick="del(this)"
+													href="javascript:void(0)">Delete</a></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div class="footer">
-
-		<div class="footer-inner">2017 &copy; NCRE. Admin Cyber Oar.</div>
-
-		<div class="footer-tools">
-
-			<span class="go-top"> <i class="icon-angle-up"></i>
-
-			</span>
 
 		</div>
 
-	</div>
+		<div class="footer">
 
-	<!-- END FOOTER -->
+			<div class="footer-inner">2017 &copy; NCRE. Admin Cyber Oar.</div>
 
-	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+			<div class="footer-tools">
 
-	<!-- BEGIN CORE PLUGINS -->
+				<span class="go-top"> <i class="icon-angle-up"></i>
 
-	<script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+				</span>
 
-	<script src="media/js/jquery-migrate-1.2.1.min.js"
-		type="text/javascript"></script>
+			</div>
 
-	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+		</div>
 
-	<script src="media/js/jquery-ui-1.10.1.custom.min.js"
-		type="text/javascript"></script>
+		<div id="add_newDiv">
+			<div class="portlet box blue">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="icon-edit"></i>添加院系信息
+					</div>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<form action="javascript:void(0)" method="get" id="addform">
+					<ul id="addul">
+						<li>学院: &nbsp;&nbsp;<input type="text" name="aname"  id="atext"/></li>
+						<li>班级: &nbsp;&nbsp;<input type="text" name="cname"  id="ctext"/></li>
+						<li><button onclick="addAcad()" class="btn green">添加 </button>
+						<button onclick="closenew()" class="btn red">关闭</button></li>
+					</ul>
+					
+				</form>
+			</div>
+		</div>
 
-	<script src="media/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--[if lt IE 9]>
+		<!-- END FOOTER -->
+
+		<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+
+		<!-- BEGIN CORE PLUGINS -->
+
+		<script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+
+		<script src="media/js/jquery-migrate-1.2.1.min.js"
+			type="text/javascript"></script>
+
+		<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+		<script src="media/js/jquery-ui-1.10.1.custom.min.js"
+			type="text/javascript"></script>
+
+		<script src="media/js/bootstrap.min.js" type="text/javascript"></script>
+
+		<!--[if lt IE 9]>
 
 	<script src="media/js/excanvas.min.js"></script>
 
@@ -351,42 +464,43 @@
 
 	<![endif]-->
 
-	<script src="media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+		<script src="media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
 
-	<script src="media/js/jquery.blockui.min.js" type="text/javascript"></script>
+		<script src="media/js/jquery.blockui.min.js" type="text/javascript"></script>
 
-	<script src="media/js/jquery.cookie.min.js" type="text/javascript"></script>
+		<script src="media/js/jquery.cookie.min.js" type="text/javascript"></script>
 
-	<script src="media/js/jquery.uniform.min.js" type="text/javascript"></script>
+		<script src="media/js/jquery.uniform.min.js" type="text/javascript"></script>
 
-	<!-- END CORE PLUGINS -->
+		<!-- END CORE PLUGINS -->
 
-	<!-- BEGIN PAGE LEVEL PLUGINS -->
+		<!-- BEGIN PAGE LEVEL PLUGINS -->
 
-	<script type="text/javascript" src="media/js/select2.min.js"></script>
+		<script type="text/javascript" src="media/js/select2.min.js"></script>
 
-	<script type="text/javascript" src="media/js/jquery.dataTables.js"></script>
+		<script type="text/javascript" src="media/js/jquery.dataTables.js"></script>
 
-	<script type="text/javascript" src="media/js/DT_bootstrap.js"></script>
+		<script type="text/javascript" src="media/js/DT_bootstrap.js"></script>
 
-	<!-- END PAGE LEVEL PLUGINS -->
+		<!-- END PAGE LEVEL PLUGINS -->
 
-	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+		<!-- BEGIN PAGE LEVEL SCRIPTS -->
 
-	<script src="media/js/app.js"></script>
+		<script src="media/js/app.js"></script>
 
-	<script src="media/js/table-editable.js"></script>
+		<script src="media/js/table-editable.js"></script>
 
-	<script>
-		jQuery(document).ready(function() {
+		<script src="js/acadsetting.js"></script>
 
-			App.init();
+		<script>
+			jQuery(document).ready(function() {
 
-			TableEditable.init();
+				App.init();
 
-		});
-	</script>
+				TableEditable.init();
 
+			});
+		</script>
 </body>
 
 <!-- END BODY -->

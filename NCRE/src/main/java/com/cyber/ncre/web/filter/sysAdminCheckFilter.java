@@ -34,8 +34,10 @@ public class sysAdminCheckFilter extends AbstractFilter {
 		HttpServletResponse response =(HttpServletResponse) resp;
 		String requri = request.getRequestURI();
 
-		if (request.getSession().getAttribute("sysUser") == null) {//当没有登录时,为空.当其他用户登录时,这里会被清空
-			if (requri.endsWith("sysmanage.jsp") || requri.endsWith("sysapply.jsp")) {
+		if (request.getSession().getAttribute("sysUser") == null || request.getSession().getAttribute("sysUser").equals("")) {//当没有登录时,为空.当其他用户登录时,这里会被清空
+			if (requri.endsWith("sysmanage.jsp") || requri.endsWith("sysapply.jsp") || requri.endsWith("acadsetting.jsp") ||
+					requri.endsWith("sysnews.jsp") || requri.endsWith("syskao.jsp") || requri.endsWith("findapply") ||
+					requri.endsWith("findacad") || requri.endsWith("findnews") || requri.endsWith("findkao")) {
 				LogManager.getLogger().debug("请先登录再操作");
 				request.getRequestDispatcher("/page/syslogin.jsp").forward(request, response);
 				return;
