@@ -34,9 +34,17 @@ public class sysAdminCheckFilter extends AbstractFilter {
 		HttpServletResponse response =(HttpServletResponse) resp;
 		String requri = request.getRequestURI();
 
+<<<<<<< HEAD
 		if (request.getSession().getAttribute("sysUser") == null) {//褰撴病鏈夌櫥褰曟椂,涓虹┖.褰撳叾浠栫敤鎴风櫥褰曟椂,杩欓噷浼氳娓呯┖
 			if (requri.endsWith("sysmanage.jsp") || requri.endsWith("sysapply.jsp")) {
 				LogManager.getLogger().debug("璇峰厛鐧诲綍鍐嶆搷浣�");
+=======
+		if (request.getSession().getAttribute("sysUser") == null || request.getSession().getAttribute("sysUser").equals("")) {//当没有登录时,为空.当其他用户登录时,这里会被清空
+			if (requri.endsWith("sysmanage.jsp") || requri.endsWith("sysapply.jsp") || requri.endsWith("acadsetting.jsp") ||
+					requri.endsWith("sysnews.jsp") || requri.endsWith("syskao.jsp") || requri.endsWith("findapply") ||
+					requri.endsWith("findacad") || requri.endsWith("findnews") || requri.endsWith("findkao")) {
+				LogManager.getLogger().debug("请先登录再操作");
+>>>>>>> branch 'master' of git@github.com:soIlove/NCRE.git
 				request.getRequestDispatcher("/page/syslogin.jsp").forward(request, response);
 				return;
 			}

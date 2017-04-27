@@ -1,9 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html >
+<%@page import="com.cyber.ncre.entity.academyAdmin"%>
+<%@page import="java.util.List"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<!-- BEGIN HEAD -->
 
 <head>
 <base href="/NCRE/">
@@ -21,9 +30,7 @@
 
 <link href="media/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
-	
-<link href="css/acaApply.css" rel="stylesheet"
-	type="text/css" />
+
 <link href="media/css/bootstrap-responsive.min.css" rel="stylesheet"
 	type="text/css" />
 
@@ -51,6 +58,7 @@
 	href="media/css/select2_metro.css" />
 
 <link rel="stylesheet" href="media/css/DT_bootstrap.css" />
+<link rel="stylesheet" href="css/kao.css" />
 
 <!-- END PAGE LEVEL STYLES -->
 
@@ -65,8 +73,6 @@
 <body class="page-header-fixed">
 
 	<!-- BEGIN HEADER -->
-	<input id="acname" type="hidden" value="${acaAdmin.acloginname}">
-	<input id="acmyid" type="hidden" value="${acaAdmin.acacademyid}">
 
 	<div class="header navbar navbar-inverse navbar-fixed-top">
 
@@ -101,14 +107,14 @@
 					<li class="dropdown user"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> <!-- <img alt="" src="media/image/avatar1_small.jpg" />-->
 
-							<span class="username">${acaAdmin.acloginname}</span> <i
+							<span class="username">${sysUser.syname}</span> <i
 							class="icon-angle-down"></i>
 
 					</a>
 
 						<ul class="dropdown-menu">
-							<li><a href="page/acalogin.jsp"><i class="icon-key"></i> Log
-									Out</a></li>
+							<li><a href="sysadmin/logout"><i class="icon-key"></i>
+									Log Out</a></li>
 						</ul></li>
 
 
@@ -142,28 +148,34 @@
 					<div class="sidebar-toggler hidden-phone"></div> <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 
 				</li>
-				
+				<br />
+
 
 
 				<li class="active "><a href="javascript:;"> <i
-						class="icon-th"></i> <span class="title">考生管理</span> <span
+						class="icon-th"></i> <span class="title">核心功能</span> <span
 						class="selected"></span> <span class="arrow "></span>
 
 				</a>
 
 					<ul class="sub-menu">
 
-						<li class=""><a href="page/acaApply.jsp"> 报名审核，查询</a></li>
-						<li class="active"><a href="page/acaNPMan.jsp" > 未通过管理</a></li>
+
+						<li class=""><a href="sysadmin/findapply"> 申请管理</a></li>
+
+
+						<li class=""><a href="sysadmin/findacad"> 院系管理 </a></li>
+
+
+						<li class=""><a href="sysadmin/findnews"> 新闻管理</a></li>
+
+
+						<li class=""><a href="sysadmin/findkao"> 考场管理 </a></li>
+
+
 
 					</ul></li>
 
-
-
-				<li class="last "><a href="charts.html"> <i
-						class="icon-bar-chart"></i> <span class="title">报表统计</span>
-
-				</a></li>
 
 			</ul>
 
@@ -284,10 +296,12 @@
 
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 
-						<h3 class="page-title">核心管理</h3>
+						<h3 class="page-title">考场管理</h3>
 
 						<ul class="breadcrumb">
-							<li><i class="icon-home"></i> <a href="page/sysmanage.jsp">Home</a>
+							<li><i class="icon-home"></i> <a href="page/sysmanage.jsp">主页</a><i
+								class="icon-angle-right"></i></li>
+							<li><a href="page/syskao.jsp">考场管理</a></li>
 						</ul>
 					</div>
 
@@ -296,12 +310,14 @@
 				<div class="row-fluid">
 
 					<div class="span12">
-					  			<div class="portlet box blue">
+						<!-- BEGIN EXAMPLE TABLE PORTLET-->
+
+						<div class="portlet box blue">
 
 							<div class="portlet-title">
 
 								<div class="caption">
-									<i class="icon-edit"></i>Apply data
+									<i class="icon-edit"></i>考场数据
 								</div>
 
 								<div class="tools">
@@ -309,7 +325,7 @@
 									<a href="javascript:;" class="collapse"></a> <a
 										href="#portlet-config" data-toggle="modal" class="config"></a>
 
-									<a href="javascript:;" class="reload"></a> <a
+									<a href="sysadmin/findacad" class="reload"></a> <a
 										href="javascript:;" class="remove"></a>
 
 								</div>
@@ -319,6 +335,16 @@
 							<div class="portlet-body">
 
 								<div class="clearfix">
+
+									<div class="btn-group">
+
+										<button onclick="openAddnews()" class="btn green">
+
+											Add New <i class="icon-plus"></i>
+
+										</button>
+
+									</div>
 
 									<div class="btn-group pull-right">
 
@@ -332,14 +358,6 @@
 										</ul>
 									</div>
 								</div>
-								
-								
-								<!-- 模态弹出窗 -->
-								
-
-								
-								
-								
 
 								<table class="table table-striped table-hover table-bordered"
 									id="sample_editable_1">
@@ -347,46 +365,37 @@
 									<thead>
 
 										<tr>
+											<th style="text-align: center;">Id</th>
 
-											<th>报考编号</th>
+											<th style="text-align: center;">Name</th>
 
-											<th>姓名</th>
+											<th style="text-align: center;">Capacity</th>
 											
-											<th>证件照</th>
+											<th style="text-align: center;">Building</th>
 
-											<th>班级</th>
+											<th style="text-align: center;">Coordinate</th>
 
-											<th>身份证号</th>
+											<th style="text-align: center;">Edit</th>
 
-											<th>联系电话</th>
+											<th style="text-align: center;">Delete</th>
 
-											<th>考试类别</th>
-
-											<th>审核状态</th>
-											
-											<th style="width:20%">原因</th>
-
-											<th>移除</th>
 										</tr>
 
 									</thead>
-									<tbody id="stuapplyNPdata">
-									 	<c:forEach var="stuNPapplyinfo" items="${StuNPApplyMsg}">
-											<tr class='tr_1'>
-												<td class='dd'>${stuNPapplyinfo.cid}</td>
-												<td class='dd'>${stuNPapplyinfo.sname}</td>
-												<td class='dd'><img style="width:80px;hight:40px;" src='${stuNPapplyinfo.epicture}'></td>
-												<td class='dd'>${stuNPapplyinfo.sclass}</td>
-												<td class='dd'>${stuNPapplyinfo.eidentif}</td>
-												<td class='dd'>${stuNPapplyinfo.ephone}</td>
-												<td class='dd'>${stuNPapplyinfo.tename}</td>
-												<td class='dd'>${stuNPapplyinfo.cstatus}</td>
-												<td class='dd'>${stuNPapplyinfo.nocontent}</td>
-												<td class='dd'> <p>
-												   	<button type="button" class="btn btn-primary btn-lg kk" onclick="removeApply(this)">移除</button>
-												</p></td>
+									<tbody>
+										<c:forEach var="kaoinfo" items="${kaoMsg}">
+											<tr class=''>
+												<td style="text-align: center;">${kaoinfo.krid}</td>
+												<td style="text-align: center;">${kaoinfo.krclass}</td>
+												<td style="text-align: center;">${kaoinfo.krtotal}</td>
+												<td style="text-align: center;">${kaoinfo.krlou}</td>
+												<td style="text-align: center;">${kaoinfo.kraddr}</td>
+												<td style="text-align: center;"><a class="" onclick="edit(this)"
+													href="javascript:void(0)">Edit</a></td>
+												<td style="text-align: center;"><a class="" onclick="del(this)"
+													href="javascript:void(0)">Delete</a></td>
 											</tr>
-										</c:forEach>  
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -394,41 +403,66 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div class="footer">
-
-		<div class="footer-inner">2017 &copy; NCRE. Admin Cyber Oar.</div>
-
-		<div class="footer-tools">
-
-			<span class="go-top"> <i class="icon-angle-up"></i>
-
-			</span>
 
 		</div>
 
-	</div>
+		<div class="footer">
 
-	<!-- END FOOTER -->
+			<div class="footer-inner">2017 &copy; NCRE. Admin Cyber Oar.</div>
 
-	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+			<div class="footer-tools">
 
-	<!-- BEGIN CORE PLUGINS -->
+				<span class="go-top"> <i class="icon-angle-up"></i>
 
-	<script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+				</span>
 
-	<script src="media/js/jquery-migrate-1.2.1.min.js"
-		type="text/javascript"></script>
+			</div>
 
-	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+		</div>
 
-	<script src="media/js/jquery-ui-1.10.1.custom.min.js"
-		type="text/javascript"></script>
+		<div id="kaoAddDiv">
+			<div class="portlet box blue">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="icon-edit"></i>添加考场信息
+					</div>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<form action='javascript:void(0)' method='post' id="addform">
+					<ul class="newsul">
+						<li>考场名称: <input type='text' name='krclass' ></li>
+						<li>考场容量: <input type='text' name='krtotal' ></li>
+						<li>所属楼层: <input type='text' name='krlou' ></li>
+						<li>考场坐标: <input type='text' name='kraddr' ></li>
+						<li><button class="btn green">添加 </button>
+						<span onclick="closeAddnews()" class="btn red">关闭</span></li>
+					</ul>
+				</form>
+			</div>
+		</div>
+		
 
-	<script src="media/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--[if lt IE 9]>
+		<!-- END FOOTER -->
+
+		<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+
+		<!-- BEGIN CORE PLUGINS -->
+
+		<script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+
+		<script src="media/js/jquery-migrate-1.2.1.min.js"
+			type="text/javascript"></script>
+
+		<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+		<script src="media/js/jquery-ui-1.10.1.custom.min.js"
+			type="text/javascript"></script>
+
+		<script src="media/js/bootstrap.min.js" type="text/javascript"></script>
+
+		<!--[if lt IE 9]>
 
 	<script src="media/js/excanvas.min.js"></script>
 
@@ -436,44 +470,45 @@
 
 	<![endif]-->
 
-	<script src="media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+		<script src="media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
 
-	<script src="media/js/jquery.blockui.min.js" type="text/javascript"></script>
+		<script src="media/js/jquery.blockui.min.js" type="text/javascript"></script>
 
-	<script src="media/js/jquery.cookie.min.js" type="text/javascript"></script>
+		<script src="media/js/jquery.cookie.min.js" type="text/javascript"></script>
 
-	<script src="media/js/jquery.uniform.min.js" type="text/javascript"></script>
+		<script src="media/js/jquery.uniform.min.js" type="text/javascript"></script>
 
-	<!-- END CORE PLUGINS -->
+		<!-- END CORE PLUGINS -->
 
-	<!-- BEGIN PAGE LEVEL PLUGINS -->
+		<!-- BEGIN PAGE LEVEL PLUGINS -->
 
-	<script type="text/javascript" src="media/js/select2.min.js"></script>
+		<script type="text/javascript" src="media/js/select2.min.js"></script>
 
-	<script type="text/javascript" src="media/js/jquery.dataTables.js"></script>
+		<script type="text/javascript" src="media/js/jquery.dataTables.js"></script>
 
-	<script type="text/javascript" src="media/js/DT_bootstrap.js"></script>
+		<script type="text/javascript" src="media/js/DT_bootstrap.js"></script>
 
-	<!-- END PAGE LEVEL PLUGINS -->
+		<!-- END PAGE LEVEL PLUGINS -->
 
-	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+		<!-- BEGIN PAGE LEVEL SCRIPTS -->
 
-	<script src="media/js/app.js"></script>
+		<script src="media/js/app.js"></script>
 
-	<script src="media/js/table-editable.js"></script>
-	<script src="js/acaNPMan.js" type="text/javascript"></script>
-	
+		<script src="media/js/table-editable.js"></script>
+		
+		<script src="easyui/jquery.easyui.min.js"></script>
 
-	<script>
-		jQuery(document).ready(function() {
+		<script src="js/syskao.js"></script>
 
-			App.init();
+		<script>
+			jQuery(document).ready(function() {
 
-			TableEditable.init();
+				App.init();
 
-		});
-	</script>
-	
+				TableEditable.init();
+
+			});
+		</script>
 </body>
 
 <!-- END BODY -->

@@ -152,7 +152,7 @@
 					<ul class="sub-menu">
 
 						<li class=""><a href="page/acaApply.jsp"> 报名审核</a></li>
-						<li class=""><a href="acaNPMan.jsp"> 未通过管理</a></li>
+						<li class=""><a href="page/acaNPMan.jsp"> 未通过管理</a></li>
 
 					</ul></li>
 

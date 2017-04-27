@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 create table students(               --学生注册表
       sid int primary key,  --学生编号
       sxid varchar2(15) unique ,    --登录账号
@@ -48,6 +49,64 @@ create table students(               --学生注册表
       select * from enrollmsg
       
       create table testclas(  --考试类别表
+=======
+--计算机等级考试报名系统数据库用例：
+		create table students{               --学生注册表
+			sid int primary key,  --学生编号
+			sxid int unique ,    --学生学号
+			spwd varchar2(30),  --登录密码
+			sname varchar2(10),  --学生姓名，
+			ssex varchar2(10) check in('男','女') ,  --性别
+			semail varchar2(40),  --邮箱
+			sacademy varchar2(20),  --所在学院
+			sclass varchar2(20),  --所在班级
+			remain1 varchar2(30) ,
+			remain2 varchar2(30) ,
+		}
+		
+		create sequence seq_sid start with 1001;                    --后面序列格式类似，    seq_(*id)
+		
+		
+		create table enrollmsg{        --报名信息表
+			eid int primary key,          --报名编号
+			sid int  foreigen key references  students(sid) on delete cascade on update cascade, --学生id
+			epicture varchar2(100),     --证件头像
+			enation varchar2(16),        --民族
+			eidentif int not null unique,  --身份证号
+			ebirthday varchar2(30),     --出生日期
+			ework varchar2(30),       --职业
+			eaddr varchar2(50),       --联系地址
+			ephone int,               --联系电话
+			remain1 varchar2(30) ,
+			remain2 varchar2(30) ,	
+		
+		}
+		
+		
+		create table news{   --新闻通知表
+			nid int primary key,--新闻id
+			toid int foreigen key references topic(toid) on delete cascade,--新闻标题
+			ntext varchar2(10000),--新闻正文
+		}
+		
+		create table topic{  --新闻标题表
+			toid int primary key, --标题id
+			toname varchar2(60),--标题名称	
+			todate Date ,--发布时间
+		}
+		
+		create table computest{  --报考表                                       《关键表》
+			cid int primary key,  --报考编号
+			eid foreigen key references enrollmsg(eid) on delete cascade,
+			teid foreigen key references testclas(teid) on delete cascade,
+			cstatus varchar2 check in('未审核','审核通过','未通过','已删除')
+			cotid varchar2(20),   --准考证号
+			cotclass varchar2(30),--考场号
+			cottask varchar2(10), --座位号
+		}
+		
+		create table testclas{  --考试类别表
+>>>>>>> branch 'master' of git@github.com:soIlove/NCRE.git
 			teid int primary key,
 			tename varchar2(20),    --考试名称
 			televel int check (televel in(1,2,3,4)) --考试级别
@@ -61,6 +120,7 @@ create table students(               --学生注册表
       insert into testclas values(seq_teid.nextval,'web程序设计',2);
       insert into testclas values(seq_teid.nextval,'java语言程序设计',2);
 
+<<<<<<< HEAD
       select * from testclas
       
       create table computest(  --报考表                                       《关键表》
@@ -159,6 +219,14 @@ create table students(               --学生注册表
     
 
 	/*************已创建*******************/
+=======
+		}
+		
+		
+		
+		
+		/*************已创建*******************/
+>>>>>>> branch 'master' of git@github.com:soIlove/NCRE.git
 		create table sysadmin(	--系统管理员
 			syid int primary key,
 			syname varchar2(12),--管理员姓名
@@ -169,9 +237,9 @@ create table students(               --学生注册表
 		create table academy(   --学院表
 			aid int primary key ,--学院id
 			aname varchar2(20),--学院名称
-			remain1 varchar2(30)
 		)
 		insert into  academy values(1,'计信学院','');
+		create sequence seq_academy_aid start with 2;
 		select * from academy;
 		
 		create table academyadmin(      --院系管理员表
@@ -193,6 +261,7 @@ create table students(               --学生注册表
 		insert into academyadmin values(1001,'刘婷玉','1436586658@qq.com','961014','女','/picKu/3.jpg','书记',1,'18216034297','2017-03-22',default);
 		select * from academyadmin am inner join academy ac on am.acacademyid=ac.aid and am.acstatus='待审核' order by actime desc
 		update academyadmin set acstatus = '待审核' where acid = 1000
+<<<<<<< HEAD
 			insert into academyadmin values(seq_acid.nextval,'刘婷玉','1436586658@qq.com','a','女','/picKu/3.jpg','书记',5001,'18216034297',sysdate,default);
 		create table class(      --班级表
 			cid int primary key, --班级id
@@ -208,3 +277,45 @@ create table students(               --学生注册表
 
 										
    
+=======
+		
+		create table clazz(      --班级表
+			cid int primary key, --班级id
+			cname varchar2(20),--班级名称
+			acacademyid int, --所属学院
+		)
+		rename class to clazz;
+		alter table clazz ADD CONSTRAINT FK_class_acacademyid foreign key(acacademyid) references academy(aid) on delete cascade;
+		select * from clazz c inner join academy a on c.acacademyid=a.aid order by cid,aid;
+		insert into clazz values(1,'网络1402',1,'');
+		insert into clazz values(3,'网络1401',(select aid from academy where aname='计算机与信息科学学院'),'');
+		create sequence seq_clazz_cid start with 4;
+		
+		create table news(				--新闻通知表
+			news_id int primary key,	--新闻id
+			news_name varchar2(60),		--标题名称	
+			news_text varchar2(1000),	--新闻正文(不得超过五百字)
+			news_pic varchar2(100),		--新闻图片
+			news_date date				--发布时间
+		);
+		insert into news values(2,'大学四级考试改革','自2017年6月份开始，大学英语四级考试全面改革，满分750分将缩为100分','/picKu/1.jpg',sysdate);
+		create sequence seq_news_id start with 1;
+		select * from news;
+		alter table news add ;
+		drop table news
+		
+		
+		create table kaoroom(		--考场表
+			krid int primary key,
+			krclass varchar2(20),	--考场名称		第15考室
+			krtotal varchar2(10),	--教室最大容量		40
+			krlou varchar2(20), 	--考场所属楼层		2号楼（信息楼）
+			kraddr varchar2(20)		--考场位置			612
+		)
+		insert into kaoroom values(1,'第1考室','40','材化楼','414');
+		select * from kaoroom;
+		create sequence seq_kaoroom_kaid start with 1;
+		
+		
+		
+>>>>>>> branch 'master' of git@github.com:soIlove/NCRE.git

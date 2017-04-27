@@ -2,9 +2,11 @@ package com.cyber.ncre.entity;
 
 import java.io.Serializable;
 
+
 public class academy implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+
 	private Integer aid;
 	private String aname;
 

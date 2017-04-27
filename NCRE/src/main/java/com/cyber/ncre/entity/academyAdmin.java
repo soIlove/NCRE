@@ -2,9 +2,11 @@ package com.cyber.ncre.entity;
 
 import java.io.Serializable;
 
+
 public class academyAdmin implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+
 	/* 用户编号 */
 	private Integer acid;
 	/* 用户名称 */

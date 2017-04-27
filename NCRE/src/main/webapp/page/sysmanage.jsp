@@ -149,7 +149,7 @@
 
 
 				<li class="active "><a href="javascript:;"> <i
-						class="icon-th"></i> <span class="title">核心管理</span> <span
+						class="icon-th"></i> <span class="title">核心功能</span> <span
 						class="selected"></span> <span class="arrow "></span>
 
 				</a>
@@ -160,32 +160,19 @@
 						<li class=""><a href="sysadmin/findapply"> 申请管理</a></li>
 
 
-						<li class=""><a href=""> 学院管理 </a></li>
+						<li class=""><a href="sysadmin/findacad"> 院系管理 </a></li>
 
 
-						<li class=""><a href=""> 宣传管理</a></li>
+						<li class=""><a href="sysadmin/findnews"> 新闻管理</a></li>
 
 
-						<li class=""><a href=""> 报考管理</a></li>
+						<li class=""><a href="sysadmin/findkao"> 考场管理 </a></li>
 
 
-						<li class=""><a href=""> 考场管理 </a></li>
-
-
-						<li class=""><a href=""> 分布管理</a></li>
 
 
 
 					</ul></li>
-
-
-
-
-
-				<li class="last "><a href="charts.html"> <i
-						class="icon-bar-chart"></i> <span class="title">报表统计</span>
-
-				</a></li>
 
 			</ul>
 
@@ -306,10 +293,10 @@
 
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 
-						<h3 class="page-title">核心管理</h3>
+						<h3 class="page-title">主页</h3>
 
 						<ul class="breadcrumb">
-							<li><i class="icon-home"></i> <a href="page/sysmanage.jsp">Home</a>
+							<li><i class="icon-home"></i> <a href="page/sysmanage.jsp">主页</a>
 						</ul>
 					</div>
 

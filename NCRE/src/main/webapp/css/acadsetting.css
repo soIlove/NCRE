@@ -1,0 +1,34 @@
+#add_newDiv{
+	width: 400px;
+	height: 280px;
+	border: 1px solid #B4CEF8;
+	position: absolute;
+	top: 160px;
+	left: 500px;
+	background: #fff;
+	display:none;
+}
+
+#addform{
+	width:80%;
+	height: 90%;
+}
+
+#addul{
+	width:100%;
+	height: 100%;
+}
+
+#addul li{
+	list-style: none;
+	margin-left: 20px;
+	margin-top:10px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #333;
+}
+
+#addul button{
+	margin-top:20px;
+	margin-left:60px;
+}

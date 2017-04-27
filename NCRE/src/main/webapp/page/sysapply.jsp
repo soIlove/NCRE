@@ -152,7 +152,7 @@
 
 
 				<li class="active "><a href="javascript:;"> <i
-						class="icon-th"></i> <span class="title">核心管理</span> <span
+						class="icon-th"></i> <span class="title">核心功能</span> <span
 						class="selected"></span> <span class="arrow "></span>
 
 				</a>
@@ -160,36 +160,20 @@
 					<ul class="sub-menu">
 
 
-						<li class=""><a href="page/sysapply.jsp"> 申请管理</a></li>
+						<li class=""><a href="sysadmin/findapply"> 申请管理</a></li>
 
 
-						<li class=""><a href=""> 学院管理 </a></li>
+						<li class=""><a href="sysadmin/findacad"> 院系管理 </a></li>
 
 
-						<li class=""><a href=""> 宣传管理</a></li>
+						<li class=""><a href="sysadmin/findnews"> 新闻管理</a></li>
 
 
-						<li class=""><a href=""> 报考管理</a></li>
-
-
-						<li class=""><a href=""> 考场管理 </a></li>
-
-
-						<li class=""><a href=""> 分布管理</a></li>
+						<li class=""><a href="sysadmin/findkao"> 考场管理 </a></li>
 
 
 
 					</ul></li>
-
-
-
-
-
-				<li class="last "><a href="charts.html"> <i
-						class="icon-bar-chart"></i> <span class="title">报表统计</span>
-
-				</a></li>
-
 			</ul>
 
 			<!-- END SIDEBAR MENU -->
@@ -312,9 +296,9 @@
 						<h3 class="page-title">申请管理</h3>
 
 						<ul class="breadcrumb">
-							<li><i class="icon-home"></i> <a href="page/sysmanage.jsp">Home</a><i
+							<li><i class="icon-home"></i> <a href="page/sysmanage.jsp">主页</a><i
 								class="icon-angle-right"></i></li>
-							<li><a href="page/sysapply.jsp">apply</a></li>
+							<li><a href="page/sysapply.jsp">申请管理</a></li>
 						</ul>
 					</div>
 
@@ -330,7 +314,7 @@
 							<div class="portlet-title">
 
 								<div class="caption">
-									<i class="icon-edit"></i>Apply data
+									<i class="icon-edit"></i>申请数据
 								</div>
 
 								<div class="tools">
@@ -368,26 +352,27 @@
 									<thead>
 
 										<tr>
+											<th style="text-align: center;">Id</th>
 
-											<th>Username</th>
+											<th style="text-align: center;">Username</th>
 
-											<th>Email</th>
+											<th style="text-align: center;">Email</th>
 
-											<th>Sex</th>
+											<th style="text-align: center;">Sex</th>
 
-											<th>Picture</th>
+											<th style="text-align: center;">Picture</th>
 
-											<th>Job</th>
+											<th style="text-align: center;">Job</th>
 
-											<th>Aacademy</th>
+											<th style="text-align: center;">Aacademy</th>
 
-											<th>Tel</th>
+											<th style="text-align: center;">Tel</th>
 
-											<th>Rtime</th>
+											<th style="text-align: center;">Applytime</th>
 
-											<th>Agree</th>
+											<th style="text-align: center;">Agree</th>
 
-											<th>Disagree</th>
+											<th style="text-align: center;">Disagree</th>
 
 										</tr>
 
@@ -395,16 +380,17 @@
 									<tbody id="applydata">
 										<c:forEach var="applyinfo" items="${applyMsg}">
 											<tr class=''>
-												<td class=''>${applyinfo.acloginname}</td>
-												<td class=''>${applyinfo.acemail}</td>
-												<td class=''>${applyinfo.acsex}</td>
-												<td class=''><img style="width:80px;hight:40px;" src='${applyinfo.acpicture}'></td>
-												<td class=''>${applyinfo.acwork}</td>
-												<td class=''>${applyinfo.academy.aname}</td>
-												<td class=''>${applyinfo.acphone}</td>
-												<td class=''>${applyinfo.actime}</td>
-												<td><a class='' href='javascript:void(0)'>Agree</a></td>
-												<td><a class='' href='javascript:void(0)'>Disagree</a></td>
+												<td style="text-align: center;">${applyinfo.acid}</td>
+												<td style="text-align: center;">${applyinfo.acloginname}</td>
+												<td style="text-align: center;">${applyinfo.acemail}</td>
+												<td style="text-align: center;">${applyinfo.acsex}</td>
+												<td style="text-align: center;"><img style="width:80px;hight:40px;" src='${applyinfo.acpicture}'></td>
+												<td style="text-align: center;">${applyinfo.acwork}</td>
+												<td style="text-align: center;">${applyinfo.academy.aname}</td>
+												<td style="text-align: center;">${applyinfo.acphone}</td>
+												<td style="text-align: center;">${applyinfo.actime}</td>
+												<td style="text-align: center;"><a class='' href='javascript:void(0)' onclick="doAgree(this)">Agree</a></td>
+												<td style="text-align: center;"><a class='' href='javascript:void(0)' onclick="doDisagree(this)">Disagree</a></td>
 											</tr>
 										</c:forEach> 
 									</tbody>

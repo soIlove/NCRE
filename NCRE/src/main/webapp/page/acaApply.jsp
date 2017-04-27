@@ -287,7 +287,7 @@
 						<h3 class="page-title">核心管理</h3>
 
 						<ul class="breadcrumb">
-							<li><i class="icon-home"></i> <a href="page/sysmanage.jsp">Home</a>
+							<li><i class="icon-home"></i> <a href="page/acaindex.jsp">Home</a>
 						</ul>
 					</div>
 
