@@ -2,6 +2,7 @@ package com.cyber.ncre.service;
 
 import java.util.List;
 
+import com.cyber.ncre.entity.CompuTestMsg;
 import com.cyber.ncre.entity.academy;
 import com.cyber.ncre.entity.academyAdmin;
 import com.cyber.ncre.entity.clazz;
@@ -48,5 +49,7 @@ public interface sysAdminService{
 	boolean dodelkao(kaoroom kaoroom);
 
 	boolean doaddkao(kaoroom kaoroom);
+
+	List<CompuTestMsg> dobaoMsg();
 	
 }

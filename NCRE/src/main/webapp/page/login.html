@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-
-
  <html >
-
-
-
 <head>
 	
 	<base href="/NCRE/">
@@ -71,7 +66,7 @@
 
 		<!-- BEGIN LOGIN FORM -->
 
-		<form class="form-vertical login-form" action="index.html">
+		<form class="form-vertical login-form" id="userLogin" method="post" action="user/login">
 
 			<h3 class="form-title">请登录您的账号</h3>
 
@@ -79,7 +74,7 @@
 
 				<button class="close" data-dismiss="alert"></button>
 
-				<span>Enter any username and password.</span>
+				<span>请输入账号、密码和验证码</span>
 
 			</div>
 
@@ -87,15 +82,15 @@
 
 				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 
-				<label class="control-label visible-ie8 visible-ie9">用户名</label>
+				<label class="control-label visible-ie8 visible-ie9">学号</label>
 
 				<div class="controls">
 
 					<div class="input-icon left">
 
-						<i class="icon-user"></i>
+						<i class="icon-star"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="username"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="账号" name="sxid" id="sxid"/>
 
 					</div>
 
@@ -113,23 +108,35 @@
 
 						<i class="icon-lock"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Password" name="password"/>
+						<input class="m-wrap placeholder-no-fix" type="password" placeholder="密码" name="spwd" id="spwd"/>
 
 					</div>
 
 				</div>
 
 			</div>
+			
+			<div class="control-group">
 
+				<label class="control-label visible-ie8 visible-ie9">vcode</label>
+				
+				<div class="controls">
+					
+					<div class="input-icon left">
+						<img src="vcode.jpg" title="看不清，换一张" style="width:90px; height:33px;"/><input name="vcode" placeholder="请输入验证码" class="m-wrap placeholder-no-fix" style="width:140px;height:30px; float:right;border-left:1px solid #E5E5E5;" id="vcode" />
+					</div>
+
+				</div>
+
+			</div>
 			<div class="form-actions">
 
 				<label class="checkbox">
 
-				<input type="checkbox" name="remember" value="1"/> 记住密码
+				<input type="checkbox" name="remember" value="1" style="margin-left:5px;"/> 记住密码
 
 				</label>
-
-				<button type="submit" class="btn green pull-right">
+				<button type="submit" class="btn green pull-right" id="loginBtn">
 
 				Login <i class="m-icon-swapright m-icon-white"></i>
 
@@ -169,11 +176,30 @@
 
 		<!-- BEGIN FORGOT PASSWORD FORM -->
 
-		<form class="form-vertical forget-form" action="index.html">
+		<form class="form-vertical forget-form" action="index.jsp">
 
-			<h3 class="">Forget Password ?</h3>
+			<h3 class="">忘记密码 ?</h3>
 
-			<p>Enter your e-mail address below to reset your password.</p>
+			<p>输入账号获取绑定邮箱地址</p>
+			<div class="control-group">
+
+				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+
+				<label class="control-label visible-ie8 visible-ie9">账号</label>
+
+				<div class="controls">
+
+					<div class="input-icon left">
+
+						<i class="icon-star"></i>
+
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="账号" name="sxid" id="getEmail"/>
+
+					</div>
+
+				</div>
+
+			</div>
 
 			<div class="control-group">
 
@@ -183,7 +209,7 @@
 
 						<i class="icon-envelope"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email" />
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email" readonly="readonly" id="email"/>
 
 					</div>
 
@@ -199,7 +225,7 @@
 
 				</button>
 
-				<button type="submit" class="btn green pull-right">
+				<button type="submit" class="btn green pull-right" id="forgetBtn">
 
 				Submit <i class="m-icon-swapright m-icon-white"></i>
 
@@ -213,12 +239,9 @@
 
 		<!-- BEGIN REGISTRATION FORM -->
 
-		<form class="form-vertical register-form" action="index.html">
+		<form class="form-vertical register-form">
 
-			<h3 class="">Sign Up</h3>
-
-			<p>Enter your account details below:</p>
-
+			<h3 class="">注册</h3>
 			<div class="control-group">
 
 				<label class="control-label visible-ie8 visible-ie9">Username</label>
@@ -229,17 +252,16 @@
 
 						<i class="icon-user"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="username"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="姓名" name="sname" id="sname"/>
 
 					</div>
 
 				</div>
 
 			</div>
-
 			<div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">Password</label>
+				<label class="control-label visible-ie8 visible-ie9">mi</label>
 
 				<div class="controls">
 
@@ -247,7 +269,7 @@
 
 						<i class="icon-lock"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" id="register_password" placeholder="Password" name="password"/>
+						<input class="m-wrap placeholder-no-fix" type="password" id="register_password" placeholder="密码" name="spwd"/>
 
 					</div>
 
@@ -265,14 +287,11 @@
 
 						<i class="icon-ok"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Re-type Your Password" name="rpassword"/>
+						<input class="m-wrap placeholder-no-fix" type="password" placeholder="确认密码" name="rpassword" />
 
 					</div>
-
 				</div>
-
-			</div>
-
+	</div>
 			<div class="control-group">
 
 				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
@@ -285,21 +304,75 @@
 
 						<i class="icon-envelope"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="邮箱" name="semail" id="semail"/>
 
 					</div>
 
 				</div>
 
 			</div>
+				<div class="control-group">
 
+				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+
+				<label class="control-label visible-ie8 visible-ie9">school</label>
+
+				<div class="controls">
+							<div class="input-icon left" style="height:35px;">
+						<i class="icon-home"></i>
+						  <select class="selectpicker" style="width:290px;background:#fff;height:35px;border:1px solid #E5E5E5;padding-left:30px;">
+						  <option disabled="disabled" selected="selected">所在学校</option>
+						  <option>湖南工学院</option>
+						</select>
+					</div>
+
+				</div>
+
+			</div>
+			<div class="control-group">
+
+				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+
+				<label class="control-label visible-ie8 visible-ie9">school</label>
+			
+			<div class="controls">
+
+					<div class="input-icon left" style="height:35px;">
+
+						<i class="icon-star"></i>
+						  <select id="academy" class="selectpicker"  style="width:290px;background:#fff;height:35px;border:1px solid #E5E5E5;padding-left:30px;">
+						  <option disabled="disabled" selected="selected">所在学院</option>
+						  </select>
+					</div>
+
+				</div>
+				</div>
+				
+				<div class="control-group">
+
+				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+
+				<label class="control-label visible-ie8 visible-ie9">school</label>
+				
+			<div class="controls">
+
+					<div class="input-icon left" style="height:35px;">
+
+						<i class="icon-book"></i>
+						  <select class="selectpicker" id="classes" style="width:290px;background:#fff;height:35px;border:1px solid #E5E5E5;padding-left:30px;">
+						  <option disabled="disabled" selected="selected">所在班级</option>
+						</select>
+					</div>
+
+				</div>
+				</div>
 			<div class="control-group">
 
 				<div class="controls">
 
 					<label class="checkbox">
 
-					<input type="checkbox" name="tnc"/> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+					<input type="checkbox" name="tnc"/> 本人同意 <a>服务条款</a> 和 <a>隐私条款</a>
 
 					</label>  
 
@@ -317,7 +390,7 @@
 
 				</button>
 
-				<button type="submit" id="register-submit-btn" class="btn green pull-right">
+				<button  id="register" type="submit" id="register-submit-btn" class="btn green pull-right">
 
 				Sign Up <i class="m-icon-swapright m-icon-white"></i>
 
@@ -384,9 +457,8 @@
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
 
 	<script src="media/js/app.js" type="text/javascript"></script>
-
-	<script src="media/js/login.js" type="text/javascript"></script>      
-
+	<script src="js/login.js" type="text/javascript"></script>   
+	<script src="js/stulogin.js" type="text/javascript"></script>      
 	<!-- END PAGE LEVEL SCRIPTS --> 
 
 	<script>

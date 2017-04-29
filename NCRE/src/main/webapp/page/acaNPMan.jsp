@@ -153,17 +153,12 @@
 
 					<ul class="sub-menu">
 
-						<li class=""><a href="page/acaApply.jsp"> 报名审核，查询</a></li>
+						<li class=""><a href="page/acaApply.jsp"> 报名审核</a></li>
 						<li class="active"><a href="page/acaNPMan.jsp" > 未通过管理</a></li>
 
 					</ul></li>
 
 
-
-				<li class="last "><a href="charts.html"> <i
-						class="icon-bar-chart"></i> <span class="title">报表统计</span>
-
-				</a></li>
 
 			</ul>
 
@@ -287,7 +282,7 @@
 						<h3 class="page-title">核心管理</h3>
 
 						<ul class="breadcrumb">
-							<li><i class="icon-home"></i> <a href="page/sysmanage.jsp">Home</a>
+							<li><i class="icon-home"></i> <a href="page/acaindex.jsp">Home</a>
 						</ul>
 					</div>
 

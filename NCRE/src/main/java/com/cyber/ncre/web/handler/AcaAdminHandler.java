@@ -1,7 +1,5 @@
 package com.cyber.ncre.web.handler;
 
-
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -28,121 +26,106 @@ import com.cyber.ncre.util.ServletUtil;
 
 @Component
 @RequestMapping("/acaadmin")
-@SessionAttributes(names={"acaAdmin","StuApplyMsg","StuNPApplyMsg"})
+@SessionAttributes(names = { "acaAdmin", "StuApplyMsg", "StuNPApplyMsg" })
 public class AcaAdminHandler {
-		
+
 	@Autowired
 	private AcaadminService acaservice;
-	
+
 	@RequestMapping("/login")
 	@ResponseBody
-	public boolean acalogin(academyAdmin acaadmin,Model model){
+	public boolean acalogin(academyAdmin acaadmin, Model model) {
 		LogManager.getLogger().debug("院系管理员登录操作");
-		academyAdmin admin=acaservice.login(acaadmin);
-		if(admin!=null){
-			model.addAttribute("acaAdmin",admin);
+		academyAdmin admin = acaservice.login(acaadmin);
+		if (admin != null) {
+			model.addAttribute("acaAdmin", admin);
 			return true;
 		}
 		return false;
-	
+
 	}
-	
-	
-	
-	
-	
+
 	@RequestMapping("/findappmsg")
 	@ResponseBody()
-	public ModelAndView findappmsg(ModelAndView model,int acmyid){
+	public ModelAndView findappmsg(ModelAndView model, int acmyid) {
 		System.out.println(acmyid);
-		List<CompuTestMsg> ComMsgList=acaservice.findappmsg(acmyid);
-		
+		List<CompuTestMsg> ComMsgList = acaservice.findappmsg(acmyid);
+
 		model.setViewName("page/acaApply");
 		model.addObject("StuApplyMsg", ComMsgList);
-		
+
 		return model;
-		
+
 	}
-	
+
 	@RequestMapping("/agreeApply")
 	@ResponseBody
-	public boolean agreeApply(int cid){
-		boolean agree=acaservice.agreeApply(cid);
+	public boolean agreeApply(int cid) {
+		boolean agree = acaservice.agreeApply(cid);
 		return agree;
 	}
-	
+
 	@RequestMapping("/addNPLog")
 	@ResponseBody
-	public boolean addNPLog(int cid,String nocontent){
-		
-		
-		return acaservice.addNPLog(cid,nocontent);
+	public boolean addNPLog(int cid, String nocontent) {
+
+		return acaservice.addNPLog(cid, nocontent);
 	}
-	
+
 	@RequestMapping("/disagreeApply")
 	@ResponseBody
-	public boolean disagreeApply(int cid){
-		
+	public boolean disagreeApply(int cid) {
+
 		return acaservice.disagreeApply(cid);
 	}
-	
-	
+
 	@RequestMapping("/findNPmsg")
 	@ResponseBody()
-	public ModelAndView findNPmsg(ModelAndView model,int acmyid){
-		List<CompuTestMsg> ComMsgList=acaservice.findNPmsg(acmyid);
-		
+	public ModelAndView findNPmsg(ModelAndView model, int acmyid) {
+		List<CompuTestMsg> ComMsgList = acaservice.findNPmsg(acmyid);
+
 		model.setViewName("page/acaNPMan");
 		model.addObject("StuNPApplyMsg", ComMsgList);
-		
+
 		return model;
-		
+
 	}
-	
-	
+
 	@RequestMapping("/removeApply")
 	@ResponseBody
-	public boolean removeApply(int cid){
-		
+	public boolean removeApply(int cid) {
+
 		return acaservice.removeApply(cid);
 	}
-	
+
 	@RequestMapping("/findacademy")
 	@ResponseBody
-	public List<academy> findacademy(){
-		
+	public List<academy> findacademy() {
+
 		return acaservice.findacademy();
 	}
-	
-	
+
 	@RequestMapping("/RegistExaminee")
 	@ResponseBody
-	public boolean RegistExaminee(@RequestParam(name="acpicdata",required=false) MultipartFile acpicture,academyAdmin academyAdmin){
-		
-		LogManager.getLogger().debug("执行院系管理员注册操作");
-		System.out.println("图片路径"+acpicture);
-		
+	public boolean RegistExaminee(@RequestParam(name = "acpicdata", required = false) MultipartFile acpicture,
+			academyAdmin academyAdmin) {
+
 		if (acpicture != null && !acpicture.isEmpty()) {
-			 System.out.println("怎么就是不进来尼");
-			 
+
 			try {
 				File file = new File(ServletUtil.UPLOAD_DIR, acpicture.getOriginalFilename());
 				acpicture.transferTo(file);// 上传文件
 				academyAdmin.setAcpicture("/" + ServletUtil.UPLOAD_DIR_NAME + "/" + acpicture.getOriginalFilename());
-				
-				System.out.println("当前对象为："+academyAdmin);
+
+				System.out.println("当前对象为：" + academyAdmin);
 				LogManager.getLogger().debug("头像上传成功，上传地址为:" + file);
 			} catch (IllegalStateException | IOException e) {
 				LogManager.getLogger().debug("头像上传失败：", e);
 			}
-		}else{
+		} else {
 			academyAdmin.setAcpicture("");
 		}
-		
 		return acaservice.RegistExaminee(academyAdmin);
-		
-		
-	
 	}
-	
-}	
+
+}

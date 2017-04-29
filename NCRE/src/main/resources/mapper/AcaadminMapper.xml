@@ -73,6 +73,6 @@
 	
 	<!-- 院系管理员注册 -->
 	<insert id="RegistExaminee" parameterType="academyAdmin">
-		insert into academyadmin values(seq_acid.nextval,#{acloginname},#{acemail},#{acloginpwd},#{acsex},#{acpicture},#{acwork},#{acacademyid},#{acphone},sysdate,'待审核')
+		insert into academyadmin values(seq_acid.nextval,#{acloginname},#{acemail},#{acloginpwd},#{acsex},#{acpicture},#{acwork},#{acacademyid},#{acphone},to_char(sysdate,'yyyy-mm-dd'),'待审核')
 	</insert>
 </mapper>

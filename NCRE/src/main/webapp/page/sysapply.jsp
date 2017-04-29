@@ -160,7 +160,7 @@
 					<ul class="sub-menu">
 
 
-						<li class=""><a href="sysadmin/findapply"> 申请管理</a></li>
+						<li class="active"><a href="sysadmin/findapply"> 申请管理</a></li>
 
 
 						<li class=""><a href="sysadmin/findacad"> 院系管理 </a></li>
@@ -174,6 +174,11 @@
 
 
 					</ul></li>
+
+				<li class="last "><a href="javascript:void(0)" onclick="exprotbaoMsg()"> <i
+						class="icon-bar-chart"></i> <span class="title">报考统计</span>
+
+				</a></li>
 			</ul>
 
 			<!-- END SIDEBAR MENU -->
@@ -384,15 +389,19 @@
 												<td style="text-align: center;">${applyinfo.acloginname}</td>
 												<td style="text-align: center;">${applyinfo.acemail}</td>
 												<td style="text-align: center;">${applyinfo.acsex}</td>
-												<td style="text-align: center;"><img style="width:80px;hight:40px;" src='${applyinfo.acpicture}'></td>
+												<td style="text-align: center;"><img
+													style="width: 80px; hight: 40px;"
+													src='${applyinfo.acpicture}'></td>
 												<td style="text-align: center;">${applyinfo.acwork}</td>
 												<td style="text-align: center;">${applyinfo.academy.aname}</td>
 												<td style="text-align: center;">${applyinfo.acphone}</td>
 												<td style="text-align: center;">${applyinfo.actime}</td>
-												<td style="text-align: center;"><a class='' href='javascript:void(0)' onclick="doAgree(this)">Agree</a></td>
-												<td style="text-align: center;"><a class='' href='javascript:void(0)' onclick="doDisagree(this)">Disagree</a></td>
+												<td style="text-align: center;"><a class=''
+													href='javascript:void(0)' onclick="doAgree(this)">Agree</a></td>
+												<td style="text-align: center;"><a class=''
+													href='javascript:void(0)' onclick="doDisagree(this)">Disagree</a></td>
 											</tr>
-										</c:forEach> 
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>

@@ -109,8 +109,8 @@
 					</a>
 
 						<ul class="dropdown-menu">
-							<li><a href="sysadmin/logout" id="logout"><i class="icon-key"></i> Log
-									Out</a></li>
+							<li><a href="sysadmin/logout" id="logout"><i
+									class="icon-key"></i> Log Out</a></li>
 						</ul></li>
 
 
@@ -170,10 +170,11 @@
 
 
 
-
-
 					</ul></li>
+				<li class="last "><a href="javascript:void(0)" onclick="exprotbaoMsg()"> <i
+						class="icon-bar-chart"></i> <span class="title">报考统计</span>
 
+				</a></li>
 			</ul>
 
 			<!-- END SIDEBAR MENU -->
@@ -305,7 +306,10 @@
 				<div class="row-fluid">
 
 					<div class="span12">
-						<center><h2 style="color:#666;margin-top: 100px;">Welcome to use NCRE.SYSTEM</h2></center>
+						<center>
+							<h2 style="color: #666; margin-top: 100px;">Welcome to use
+								NCRE.SYSTEM</h2>
+						</center>
 					</div>
 				</div>
 			</div>
@@ -385,6 +389,12 @@
 			TableEditable.init();
 
 		});
+		
+		function exprotbaoMsg(){
+			$.get("sysadmin/exportbaoMsg",function(data){
+				alert("导出成功,位置为:D:/湖南工学院报考统计表.xls");
+			})
+		}
 	</script>
 
 </body>

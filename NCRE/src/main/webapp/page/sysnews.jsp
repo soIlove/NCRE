@@ -167,7 +167,7 @@
 						<li class=""><a href="sysadmin/findacad"> 院系管理 </a></li>
 
 
-						<li class=""><a href="sysadmin/findnews"> 新闻管理</a></li>
+						<li class="active"><a href="sysadmin/findnews"> 新闻管理</a></li>
 
 
 						<li class=""><a href="sysadmin/findkao"> 考场管理 </a></li>
@@ -175,7 +175,10 @@
 
 
 					</ul></li>
+				<li class="last "><a href="javascript:void(0)" onclick="exprotbaoMsg()"> <i
+						class="icon-bar-chart"></i> <span class="title">报考统计</span>
 
+				</a></li>
 			</ul>
 
 			<!-- END SIDEBAR MENU -->
@@ -369,7 +372,7 @@
 											<th style="text-align: center;">Name</th>
 
 											<th style="text-align: center;">Text</th>
-											
+
 											<th style="text-align: center;">Pic</th>
 
 											<th style="text-align: center;">Date</th>
@@ -387,12 +390,14 @@
 												<td style="text-align: center;">${newsinfo.news_id}</td>
 												<td style="text-align: center;">${newsinfo.news_name}</td>
 												<td style="text-align: center;">${newsinfo.news_text}</td>
-												<td style="text-align: center;"><img src="${newsinfo.news_pic}" style="width:200px;height:150px;"></td>
+												<td style="text-align: center;"><img
+													src="${newsinfo.news_pic}"
+													style="width: 200px; height: 150px;"></td>
 												<td style="text-align: center;">${newsinfo.news_date}</td>
-												<td style="text-align: center;"><a class="" onclick="edit(this)"
-													href="javascript:void(0)">Edit</a></td>
-												<td style="text-align: center;"><a class="" onclick="del(this)"
-													href="javascript:void(0)">Delete</a></td>
+												<td style="text-align: center;"><a class=""
+													onclick="edit(this)" href="javascript:void(0)">Edit</a></td>
+												<td style="text-align: center;"><a class=""
+													onclick="del(this)" href="javascript:void(0)">Delete</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -428,18 +433,22 @@
 				</div>
 			</div>
 			<div class="portlet-body">
-				<form action='javascript:void(0)' method='post' enctype='multipart/form-data' id="addform">
+				<form action='javascript:void(0)' method='post'
+					enctype='multipart/form-data' id="addform">
 					<ul class="newsul">
-						<li>新闻标题: <input type='text' name='news_name' ></li>
-						<li>新闻正文: <textarea name="news_text" ></textarea></li>
-						<li>图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片:<img src='images/not_pic.jpg' onclick='clickPic(this)'><input type='file' name='picData' style='display:none;' onchange='changePic(this)'></li>
-						<li><button class="btn green">添加 </button>
-						<span onclick="closeAddnews()" class="btn red">关闭</span></li>
+						<li>新闻标题: <input type='text' name='news_name'></li>
+						<li>新闻正文: <textarea name="news_text"></textarea></li>
+						<li>图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片:<img
+							src='images/not_pic.jpg' onclick='clickPic(this)'><input
+							type='file' name='picData' style='display: none;'
+							onchange='changePic(this)'></li>
+						<li><button class="btn green">添加</button> <span
+							onclick="closeAddnews()" class="btn red">关闭</span></li>
 					</ul>
 				</form>
 			</div>
 		</div>
-		
+
 		<div id="newsModifyDiv">
 			<div class="portlet box blue">
 				<div class="portlet-title">
@@ -449,16 +458,21 @@
 				</div>
 			</div>
 			<div class="portlet-body">
-				<form action='javascript:void(0)' method='post' enctype='multipart/form-data' id="modifyform">
+				<form action='javascript:void(0)' method='post'
+					enctype='multipart/form-data' id="modifyform">
 					<ul class="newsul">
-						<li>编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号: <input type='text' id="news_id"  name="news_id" readonly="readonly"></li>
+						<li>编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号: <input
+							type='text' id="news_id" name="news_id" readonly="readonly"></li>
 						<li>新闻标题: <input type='text' name='news_name' id="news_name"></li>
 						<li>新闻正文: <textarea name="news_text" id="news_text"></textarea></li>
-						<li>图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片:<img src='images/not_pic.jpg' onclick='clickPic(this)' id="choiceImg"><input type='file' name='picData' style='display:none;' onchange='changePic(this)'></li>
-						<li><button class="btn green">修改 </button>
-						<span onclick="closeModifynews()" class="btn red">关闭</span></li>
+						<li>图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片:<img
+							src='images/not_pic.jpg' onclick='clickPic(this)' id="choiceImg"><input
+							type='file' name='picData' style='display: none;'
+							onchange='changePic(this)'></li>
+						<li><button class="btn green">修改</button> <span
+							onclick="closeModifynews()" class="btn red">关闭</span></li>
 					</ul>
-					
+
 				</form>
 			</div>
 		</div>
@@ -515,7 +529,7 @@
 		<script src="media/js/app.js"></script>
 
 		<script src="media/js/table-editable.js"></script>
-		
+
 		<script src="easyui/jquery.easyui.min.js"></script>
 
 		<script src="js/sysnews.js"></script>

@@ -164,7 +164,7 @@
 						<li class=""><a href="sysadmin/findapply"> 申请管理</a></li>
 
 
-						<li class=""><a href="sysadmin/findacad"> 院系管理 </a></li>
+						<li class="active"><a href="sysadmin/findacad"> 院系管理 </a></li>
 
 
 						<li class=""><a href="sysadmin/findnews"> 新闻管理</a></li>
@@ -175,7 +175,10 @@
 
 
 					</ul></li>
+			<li class="last "><a href="javascript:void(0)" onclick="exprotbaoMsg()"> <i
+						class="icon-bar-chart"></i> <span class="title">报考统计</span>
 
+				</a></li>
 			</ul>
 
 			<!-- END SIDEBAR MENU -->
@@ -386,10 +389,10 @@
 												<td style="text-align: center;">${acadinfo.academy.aname}</td>
 												<td style="text-align: center;">${acadinfo.cid}</td>
 												<td style="text-align: center;">${acadinfo.cname}</td>
-												<td style="text-align: center;"><a class="" onclick="edit(this)"
-													href="javascript:void(0)">Edit</a></td>
-												<td style="text-align: center;"><a class="" onclick="del(this)"
-													href="javascript:void(0)">Delete</a></td>
+												<td style="text-align: center;"><a class=""
+													onclick="edit(this)" href="javascript:void(0)">Edit</a></td>
+												<td style="text-align: center;"><a class=""
+													onclick="del(this)" href="javascript:void(0)">Delete</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -427,12 +430,15 @@
 			<div class="portlet-body">
 				<form action="javascript:void(0)" method="get" id="addform">
 					<ul id="addul">
-						<li>学院: &nbsp;&nbsp;<input type="text" name="aname"  id="atext"/></li>
-						<li>班级: &nbsp;&nbsp;<input type="text" name="cname"  id="ctext"/></li>
-						<li><button onclick="addAcad()" class="btn green">添加 </button>
-						<button onclick="closenew()" class="btn red">关闭</button></li>
+						<li>学院: &nbsp;&nbsp;<input type="text" name="aname"
+							id="atext" /></li>
+						<li>班级: &nbsp;&nbsp;<input type="text" name="cname"
+							id="ctext" /></li>
+						<li><button onclick="addAcad()" class="btn green">添加
+							</button>
+							<button onclick="closenew()" class="btn red">关闭</button></li>
 					</ul>
-					
+
 				</form>
 			</div>
 		</div>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间与对应映射接口的全类名一致 -->
+<mapper namespace="com.cyber.ncre.mapper.StudentMapper">
+	<select id="login" parameterType="String" resultType="Student">
+		select * from students where sxid=#{sxid} and spwd=#{spwd}
+	</select>
+	
+	<select id="getemail" parameterType="String" resultType="String">
+		select semail from students where sxid=${sxid}
+	</select>
+	
+	<update id="updatePassword" parameterType="Student">
+		update students set spwd=#{spwd} where sxid=#{sxid}
+	</update>
+	
+	<select id="getAcademy" resultType="academy">
+		select * from academy
+	</select>
+	
+	<select id="getClasses" resultType="clazz" parameterType="String">
+		select c.* from clazz c inner join academy a on c.acacademyid=a.aid where a.aname=#{aname}
+	</select>
+	
+	<select id="getTest" resultType="Testclas">
+		select * from testclas
+	</select>
+	
+	<insert id="register" parameterType="student">
+		 insert into students values(seq_sid.nextval,#{sxid},#{spwd},#{sname},'男',#{semail},#{sacademy},#{sclass},null,null)
+	</insert>
+	
+	<select id="load" parameterType="String" resultType="Student">
+		select * from students where sname=#{sname}
+	</select>
+	<select id="select" parameterType="String" resultType="int">
+		select sid from students where sname=#{sname}
+	</select>
+	<update id="modify" parameterType="String">
+		update students set ssex=#{ssex} where sname=#{sname}
+	</update>
+	<insert id="apply" parameterType="Eenrollmsg">
+		insert into enrollmsg values(seq_eid.nextval,#{sid},#{epicture},#{enation},#{eidentif},#{ebirthday},#{ework},#{eaddr},#{ephone},null,null)
+	</insert>
+	
+	<select id="show" parameterType="int" resultType="Eenrollmsg">
+		select * from enrollmsg where sid=#{sid}
+	</select>
+	<select id="selecteid" parameterType="int" resultType="int">
+		select distinct(eid) from enrollmsg where sid=#{sid}
+	</select>
+	<select id="find" parameterType="String" resultType="int">
+		select teid from testclas where tename=#{tename}
+	</select>
+	<insert id="apply2" parameterType="Computest">
+		insert into computest values(seq_cid.nextval,#{eid},#{teid},'未审核',null,null,null)
+	</insert>
+	<select id="findteid" resultType="int">
+		select teid from computest where eid=#{eid}
+	</select>
+	
+	<select id="selectename" parameterType="int" resultType="String">
+		select tename from testclas where teid=#{teid}
+	</select>
+	
+	<select id="getstuation" parameterType="int" resultType="String">
+		select cstatus from computest where eid=#{eid}
+	</select>
+</mapper>

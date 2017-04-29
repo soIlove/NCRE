@@ -2,6 +2,7 @@ package com.cyber.ncre.mapper;
 
 import java.util.List;
 
+import com.cyber.ncre.entity.CompuTestMsg;
 import com.cyber.ncre.entity.academy;
 import com.cyber.ncre.entity.academyAdmin;
 import com.cyber.ncre.entity.clazz;
@@ -52,5 +53,7 @@ public interface sysAdminMapper {
 	int delkaoRoom(kaoroom kaoroom);
 
 	int addkaoRoom(kaoroom kaoroom);
+
+	List<CompuTestMsg> findbaoMsg();
 
 }

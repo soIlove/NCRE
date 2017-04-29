@@ -160,10 +160,6 @@
 
 
 
-				<li class="last "><a href="charts.html"> <i
-						class="icon-bar-chart"></i> <span class="title">报表统计</span>
-
-				</a></li>
 
 			</ul>
 

@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-
  <html >
-
-
-
 <head>
 	
 	<base href="/NCRE/">
@@ -73,7 +68,7 @@
 
 		<!-- BEGIN LOGIN FORM -->
 
-		<form class="form-vertical login-form" action="">
+		<form class="form-vertical login-form" action="javascript:void(0)">
 
 			<h3 class="form-title">请登录您的账号</h3>
 
@@ -171,7 +166,7 @@
 
 		<!-- BEGIN FORGOT PASSWORD FORM -->
 
-		<form class="form-vertical forget-form" action=""  >
+		<form class="form-vertical forget-form" action="javascript:void(0)"  >
 
 			<h3 class="">Forget Password ?</h3>
 

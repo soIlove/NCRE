@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cyber.ncre.entity.CompuTestMsg;
 import com.cyber.ncre.entity.academy;
 import com.cyber.ncre.entity.academyAdmin;
 import com.cyber.ncre.entity.clazz;
@@ -120,6 +121,11 @@ public class sysAdminServiceImpl implements sysAdminService {
 	@Override
 	public boolean doaddkao(kaoroom kaoroom) {
 		return sysAdminMapper.addkaoRoom(kaoroom)>0;
+	}
+
+	@Override
+	public List<CompuTestMsg> dobaoMsg() {
+		return sysAdminMapper.findbaoMsg();
 	}
 
 	

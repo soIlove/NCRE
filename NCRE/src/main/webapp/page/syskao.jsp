@@ -170,12 +170,15 @@
 						<li class=""><a href="sysadmin/findnews"> 新闻管理</a></li>
 
 
-						<li class=""><a href="sysadmin/findkao"> 考场管理 </a></li>
+						<li class="active"><a href="sysadmin/findkao"> 考场管理 </a></li>
 
 
 
 					</ul></li>
+				<li class="last "><a href="javascript:void(0)" onclick="exprotbaoMsg()"> <i
+						class="icon-bar-chart"></i> <span class="title">报考统计</span>
 
+				</a></li>
 
 			</ul>
 
@@ -354,7 +357,8 @@
 										</button>
 
 										<ul class="dropdown-menu pull-right">
-											<li><a href="#">Export to Excel</a></li>
+											<li><a href="javascript:void(0)" onclick="exportkaoMsg()" >Export to Excel</a>
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -370,7 +374,7 @@
 											<th style="text-align: center;">Name</th>
 
 											<th style="text-align: center;">Capacity</th>
-											
+
 											<th style="text-align: center;">Building</th>
 
 											<th style="text-align: center;">Coordinate</th>
@@ -382,7 +386,7 @@
 										</tr>
 
 									</thead>
-									<tbody>
+									<tbody id="kaotbody">
 										<c:forEach var="kaoinfo" items="${kaoMsg}">
 											<tr class=''>
 												<td style="text-align: center;">${kaoinfo.krid}</td>
@@ -390,10 +394,10 @@
 												<td style="text-align: center;">${kaoinfo.krtotal}</td>
 												<td style="text-align: center;">${kaoinfo.krlou}</td>
 												<td style="text-align: center;">${kaoinfo.kraddr}</td>
-												<td style="text-align: center;"><a class="" onclick="edit(this)"
-													href="javascript:void(0)">Edit</a></td>
-												<td style="text-align: center;"><a class="" onclick="del(this)"
-													href="javascript:void(0)">Delete</a></td>
+												<td style="text-align: center;"><a class=""
+													onclick="edit(this)" href="javascript:void(0)">Edit</a></td>
+												<td style="text-align: center;"><a class=""
+													onclick="del(this)" href="javascript:void(0)">Delete</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -431,17 +435,17 @@
 			<div class="portlet-body">
 				<form action='javascript:void(0)' method='post' id="addform">
 					<ul class="newsul">
-						<li>考场名称: <input type='text' name='krclass' ></li>
-						<li>考场容量: <input type='text' name='krtotal' ></li>
-						<li>所属楼层: <input type='text' name='krlou' ></li>
-						<li>考场坐标: <input type='text' name='kraddr' ></li>
-						<li><button class="btn green">添加 </button>
-						<span onclick="closeAddnews()" class="btn red">关闭</span></li>
+						<li>考场名称: <input type='text' name='krclass'></li>
+						<li>考场容量: <input type='text' name='krtotal'></li>
+						<li>所属楼层: <input type='text' name='krlou'></li>
+						<li>考场坐标: <input type='text' name='kraddr'></li>
+						<li><button class="btn green">添加</button> <span
+							onclick="closeAddnews()" class="btn red">关闭</span></li>
 					</ul>
 				</form>
 			</div>
 		</div>
-		
+
 
 
 		<!-- END FOOTER -->
@@ -495,7 +499,7 @@
 		<script src="media/js/app.js"></script>
 
 		<script src="media/js/table-editable.js"></script>
-		
+
 		<script src="easyui/jquery.easyui.min.js"></script>
 
 		<script src="js/syskao.js"></script>

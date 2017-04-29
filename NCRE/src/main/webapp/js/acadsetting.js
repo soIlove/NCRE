@@ -58,3 +58,9 @@ function addAcad(){
 		}
 	});
 }
+
+function exprotbaoMsg(){
+	$.get("sysadmin/exportbaoMsg",function(data){
+		alert("导出成功,位置为:D:/湖南工学院报考统计表.xls");
+	})
+}

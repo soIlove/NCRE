@@ -124,4 +124,16 @@
 	<insert id="addkaoRoom" parameterType="kaoroom">
 		insert into kaoroom values(seq_kaoroom_kaid.nextval,#{krclass},#{krtotal},#{krlou},#{kraddr})
 	</insert>
+	
+	<select id="findbaoMsg" resultType="CompuTestMsg">
+	select cid, st.sname,en.epicture,st.ssex,st.sclass,en.enation,en.eidentif,en.ephone,te.tename,co.cstatus from computest co 
+      left join  enrollmsg en 
+      on co.eid=en.eid
+      left join students st
+      on en.sid=st.sid
+      left join testclas te
+      on co.teid=te.teid 
+      left join academy ac
+      on st.sacademy=ac.aname
+   </select>
 </mapper>
