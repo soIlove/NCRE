@@ -239,7 +239,7 @@ create table students(               --学生注册表
 			aname varchar2(20),--学院名称
 		)
 		insert into  academy values(1,'计信学院','');
-		create sequence seq_academy_aid start with 2;
+		create sequence seq_academy_aid start with 10001;
 		select * from academy;
 		
 		create table academyadmin(      --院系管理员表
@@ -272,6 +272,8 @@ create table students(               --学生注册表
 		rename class to clazz;
 		alter table clazz ADD CONSTRAINT FK_class_acacademyid foreign key(acacademyid) references academy(aid) on delete cascade;
 		select * from clazz c inner join academy a on c.acacademyid=a.aid order by cid,aid;
+		
+		create sequence seq_cid start with 1;
 		insert into clazz values(1,'网络1402',1,'');
 		insert into clazz values(2,'网络1403',(select aid from academy),'');							
 
@@ -282,14 +284,14 @@ create table students(               --学生注册表
 		create table clazz(      --班级表
 			cid int primary key, --班级id
 			cname varchar2(20),--班级名称
-			acacademyid int, --所属学院
+			acacademyid int --所属学院
 		)
 		rename class to clazz;
 		alter table clazz ADD CONSTRAINT FK_class_acacademyid foreign key(acacademyid) references academy(aid) on delete cascade;
 		select * from clazz c inner join academy a on c.acacademyid=a.aid order by cid,aid;
-		insert into clazz values(1,'网络1402',1,'');
+		insert into clazz values(seq_clazz_cid.nextval,'计科1302',5005);
 		insert into clazz values(3,'网络1401',(select aid from academy where aname='计算机与信息科学学院'),'');
-		create sequence seq_clazz_cid start with 4;
+		create sequence seq_clazz_cid start with 1;
 		
 		create table news(				--新闻通知表
 			news_id int primary key,	--新闻id
@@ -312,7 +314,7 @@ create table students(               --学生注册表
 			krlou varchar2(20), 	--考场所属楼层		2号楼（信息楼）
 			kraddr varchar2(20)		--考场位置			612
 		)
-		insert into kaoroom values(1,'第1考室','40','材化楼','414');
+		insert into kaoroom values(seq_kaoroom_kaid.nextval,'第4考室','40','材化楼','417');
 		select * from kaoroom;
 		create sequence seq_kaoroom_kaid start with 1;
 		
