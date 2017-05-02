@@ -110,7 +110,7 @@ public class AcaAdminHandler {
 	public boolean RegistExaminee(@RequestParam(name = "acpicdata", required = false) MultipartFile acpicture,
 			academyAdmin academyAdmin) {
 
-		if (acpicture != null && !acpicture.isEmpty()) {
+		if ( acpicture != null&&!acpicture.isEmpty() ) {
 
 			try {
 				File file = new File(ServletUtil.UPLOAD_DIR, acpicture.getOriginalFilename());

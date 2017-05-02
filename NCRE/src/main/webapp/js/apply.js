@@ -1,4 +1,16 @@
- $('#datetimepicker').datetimepicker({
+var sid=$("#sid_2").val(); 
+
+$.post("user/ifbaomin",{"sid":sid},function(data){
+	
+	if(data!=null){
+		alert("你已经完成报名，不能重复报名，可在个人中心查考报名情况 ")
+		window.location.href="page/profile_msg.jsp";
+	}
+
+},"json")
+
+
+$('#datetimepicker').datetimepicker({
 	 minView: 'month',            //设置时间选择为年月日 去掉时分秒选择
      format:'yyyy-mm-dd',
      pickDate: true,
@@ -10,7 +22,7 @@
      language: 'zh-CN'
    });
 
- function chgPic(obj){
+ function addpic(obj){
 	 $("#pic").attr("src",window.URL.createObjectURL(obj.files[0]));
  }
  
@@ -53,11 +65,13 @@ $("#con").click(function(){
 	}
 	$("#test").text(check_val);
 	 $("#epic").attr("src",$("#pic").attr("src"));
+	$("#tename").val(check_val);
+	 
 }) 
 
-$("#subTest").click(function(){
+/*$("#subTest").click(function(){
 	var flag;
-	$.post("user/apply",{sname:$("#sname").val(),ssex:$("input:radio:checked").val(),epicture:$("#pic").attr("src"),
+	$.post("user/apply",{sid:sid,sname:$("#sname").val(),ssex:$("input:radio:checked").val(),epicture:$("#pic").attr("src"),
 		enation:$("#enation").val(),ebirthday:$("#ebirthday").val(),eidentif:$("#eidentif").val(),ework:$("#ework").val(),
 		eaddr:$("#eaddr").val(),ephone:$("#ephone").val(),tename:$("#test").text()},function(data){
 			if(data){
@@ -66,4 +80,18 @@ $("#subTest").click(function(){
 				alert("提交申请失败，请核对您的信息是否有误");
 			}
 	})
+})*/
+
+
+
+
+$("#submit_form").form({
+	url : "user/apply",
+	success : function(data) {
+		if (data) {
+			alert("恭喜你报名成功,请等待审核");
+			location.href = "page/profile_msg.jsp";
+		}
+	}
 })
+

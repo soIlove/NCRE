@@ -2,6 +2,7 @@ package com.cyber.ncre.service;
 
 import java.util.List;
 
+import com.cyber.ncre.entity.CompuTestMsg;
 import com.cyber.ncre.entity.Eenrollmsg;
 import com.cyber.ncre.entity.Student;
 import com.cyber.ncre.entity.Testclas;
@@ -24,12 +25,16 @@ public interface StudentService {
 
 	List<Testclas> getTest();
 
-	Boolean apply(Eenrollmsg apply, String sname, String ssex, String tenames);
+	Boolean apply(Eenrollmsg apply,int sid ,String ssex, String tenames);
 
 	Eenrollmsg show(String sname);
 
 	List<String> testes(String sname);
 
 	String getstuation(String sname);
+
+	CompuTestMsg ifbaomin(int sid);
+
+	Eenrollmsg getmsg(int sid);
 
 }

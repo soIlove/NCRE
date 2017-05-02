@@ -70,15 +70,15 @@
 	</select>
 	
 	<insert id="addAcademy" parameterType="academy">
-		insert into academy values(seq_academy_aid.nextval,#{aname},'')
+		insert into academy values(seq_academy_aid.nextval,#{aname})
 	</insert>
 	
 	<insert id="addClazz" parameterType="clazz">
-		insert into clazz values(seq_clazz_cid.nextval,#{cname},(select max(aid) from academy),'')
+		insert into clazz values(seq_clazz_cid.nextval,#{cname},(select max(aid) from academy))
 	</insert>
 			
 	<insert id="addExistClazz" parameterType="clazz">
-		insert into clazz values(seq_clazz_cid.nextval,#{cname},#{acacademyid},'')
+		insert into clazz values(seq_clazz_cid.nextval,#{cname},#{acacademyid})
 	</insert>
 	
 	<select id="selectClazz" parameterType="clazz" resultType="clazz">

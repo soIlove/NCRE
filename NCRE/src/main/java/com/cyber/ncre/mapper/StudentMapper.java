@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.cyber.ncre.entity.CompuTestMsg;
 import com.cyber.ncre.entity.Computest;
 import com.cyber.ncre.entity.Eenrollmsg;
 import com.cyber.ncre.entity.Student;
@@ -29,7 +30,7 @@ public interface StudentMapper {
 
 	boolean apply(Eenrollmsg apply);
 
-	int modify(@Param("sname")String sname,@Param("ssex") String ssex);
+	int modify(int sid, String ssex);
 
 	int select(String sname);
 
@@ -46,5 +47,9 @@ public interface StudentMapper {
 	List<String> selectename(int teid);
 
 	String getstuation(int eid);
+
+	CompuTestMsg ifbaomin(int sid);
+
+	
 
 }

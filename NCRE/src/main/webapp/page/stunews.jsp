@@ -7,7 +7,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 
 <!--[if !IE]><!-->
-<html lang="en">
+
 <!--<![endif]-->
 
 <!-- BEGIN HEAD -->
@@ -70,8 +70,13 @@
 <body class="page-header-fixed">
 
 	<!-- BEGIN HEADER -->
+	
 
 	<div class="header navbar navbar-inverse navbar-fixed-top">
+
+
+			<input type="hidden" id="sid_2" value="${loginUser.sid} }">
+			<input type="hidden" id="sname_2" value="${loginUser.sname} }">
 
 		<!-- BEGIN TOP NAVIGATION BAR -->
 
@@ -104,7 +109,7 @@
 					<li class="dropdown user"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> <!-- <img alt="" src="media/image/avatar1_small.jpg" />-->
 
-							<span class="username">${loginUser}</span> <i
+							<span class="username">${loginUser.sname}</span> <i
 							class="icon-angle-down"></i>
 
 					</a>
@@ -191,7 +196,7 @@
 						</li>
 						
 						
-						<li >
+						<li class="active">
 
 							<a href="page/profile_msg.jsp">
 

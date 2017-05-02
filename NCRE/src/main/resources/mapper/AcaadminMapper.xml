@@ -5,7 +5,7 @@
 <mapper namespace="com.cyber.ncre.mapper.AcaadminMapper">
 	<!-- 院系管理员的登录操作 -->
 	<select id="login" parameterType="academyAdmin" resultType="academyAdmin">
-		select * from academyadmin where acemail = #{acemail} and acloginpwd = #{acloginpwd}
+		select * from academyadmin where acemail = #{acemail} and acloginpwd = #{acloginpwd} and acstatus='审核通过'
 	</select>
 	
 	<!-- 查询学生报名情况，并可以进行审核 -->

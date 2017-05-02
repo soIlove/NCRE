@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cyber.ncre.entity.CompuTestMsg;
 import com.cyber.ncre.entity.Computest;
 import com.cyber.ncre.entity.Eenrollmsg;
 import com.cyber.ncre.entity.Student;
@@ -60,17 +61,17 @@ public class StudentServiceImpl implements StudentService{
 
 	@Override
 	@Transactional
-	public Boolean apply(Eenrollmsg apply, String sname, String ssex,String tenames) {
-		int sid=studentMapper.select(sname);
+	public Boolean apply(Eenrollmsg apply, int sid ,String ssex ,String tenames) {
+		
 		int teid=studentMapper.find(tenames);
 		Computest co=new Computest(); 
 		Boolean flag;
-		apply.setSid(sid);
+		
 		if(studentMapper.apply(apply)){
 			int eid=studentMapper.selecteid(sid);
 			co.setEid(eid);
 			co.setTeid(teid);
-			flag=studentMapper.apply2(co)&&(studentMapper.modify(sname, ssex)>0);
+			flag=studentMapper.apply2(co)&&(studentMapper.modify(sid, ssex)>0);
 		}else{
 			flag=false;
 		}
@@ -98,6 +99,18 @@ public class StudentServiceImpl implements StudentService{
 		int sid=studentMapper.select(sname);
 		int eid=studentMapper.selecteid(sid);
 		return studentMapper.getstuation(eid);
+	}
+
+	@Override
+	public CompuTestMsg ifbaomin(int sid) {
+		// TODO Auto-generated method stub
+		return studentMapper.ifbaomin(sid);
+	}
+
+	@Override
+	public Eenrollmsg getmsg(int sid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

@@ -38,8 +38,8 @@
 	<select id="select" parameterType="String" resultType="int">
 		select sid from students where sname=#{sname}
 	</select>
-	<update id="modify" parameterType="String">
-		update students set ssex=#{ssex} where sname=#{sname}
+	<update id="modify" >
+		update students set ssex=#{1} where sid=#{0}
 	</update>
 	<insert id="apply" parameterType="Eenrollmsg">
 		insert into enrollmsg values(seq_eid.nextval,#{sid},#{epicture},#{enation},#{eidentif},#{ebirthday},#{ework},#{eaddr},#{ephone},null,null)
@@ -68,4 +68,20 @@
 	<select id="getstuation" parameterType="int" resultType="String">
 		select cstatus from computest where eid=#{eid}
 	</select>
+	
+	
+	<select id="ifbaomin" resultType="CompuTestMsg" parameterType="int">
+		select cid, st.sname,en.epicture,st.ssex,st.sclass,en.enation,en.eidentif,en.ephone,te.tename,co.cstatus from computest co 
+      left join  enrollmsg en 
+      on co.eid=en.eid
+      left join students st
+      on en.sid=st.sid
+      left join testclas te
+      on co.teid=te.teid 
+      left join academy ac
+      on st.sacademy=ac.aname
+      where st.sid=#{sid}
+	
+	</select>
+	
 </mapper>

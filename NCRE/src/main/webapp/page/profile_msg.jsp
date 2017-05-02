@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8"%>   
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+   
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -95,6 +97,9 @@
 	<!-- BEGIN HEADER -->
 
 	<div class="header navbar navbar-inverse navbar-fixed-top">
+	
+			<input type="hidden" id="sid_2" value="${loginUser.sid} ">
+			<input type="hidden" id="sname_2" value="${loginUser.sname} }">
 
 		<!-- BEGIN TOP NAVIGATION BAR -->
 
@@ -129,7 +134,7 @@
 
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-						<span class="username"><%=session.getAttribute("loginUser") %></span>
+						<span class="username"> ${loginUser.sname} </span>
 
 						<i class="icon-angle-down"></i>
 
@@ -243,7 +248,7 @@
 
 					</a>
 
-					<ul class="sub-menu">
+					<ul class="sub-menu" style="display:block">
 
 					
 
@@ -256,7 +261,7 @@
 						</li>
 						
 						
-						<li >
+						<li class="active">
 
 							<a href="page/profile_msg.jsp">
 
@@ -484,23 +489,25 @@
 
 													<div class="controls">
 
-														<span class="text display-value" data-display="username" id="name"><%=session.getAttribute("loginUser") %></span>
+														<span class="text display-value" data-display="username" id="name">${loginUser.sname}</span>
 
 													</div>
 
 												</div>
-
+												
+												
 												<div class="control-group">
 
-													<label class="control-label">出生日期:</label>
+													<label class="control-label">性别:</label>
 
 													<div class="controls">
 
-														<span class="text display-value" data-display="fullname" id="birth"></span>
+														<span class="text display-value" data-display="gender" id="ssex"></span>
 
 													</div>
 
 												</div>
+
 
 												<div class="control-group">
 
@@ -538,30 +545,8 @@
 
 												</div>
 
-												<div class="control-group">
-
-													<label class="control-label">职业:</label>
-
-													<div class="controls">
-
-														<span class="text display-value" data-display="city" id="work"></span>
-
-													</div>
-
-												</div>
-
-												<div class="control-group">
-
-													<label class="control-label">家庭住址:</label>
-
-													<div class="controls">
-
-														<span class="text display-value" data-display="country" id="addr"></span>
-
-													</div>
-
-												</div>
-
+												
+												
 												<div class="control-group">
 
 													<label class="control-label">报考项目:</label>
@@ -585,7 +570,7 @@
 
 												</div>
 													<div class="control-group">
-													<img src="media/image/8.jpg" alt="证件照" class="img-thumbnail" id="epic" style="position:absolute;margin-left:500px;margin-top:-470px;">
+													<img src="media/image/8.jpg" alt="证件照" class="img-thumbnail" id="epic" style="position:absolute;margin-left:500px;margin-top:-300px;">
 											    </div>
 
 											

@@ -267,7 +267,7 @@
 
 						<i class="icon-ok"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="确认密码" name="rpassword" value="a"/>
+						<input class="m-wrap placeholder-no-fix" type="password" placeholder="确认密码" name="rpassword" value="a" required="required"/>
 
 					</div>
 
@@ -285,7 +285,7 @@
 
 						<i class="icon-user"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="请填写姓名" name="acloginname" value="侯亮平"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="请填写姓名" name="acloginname" value="侯亮平"  required="required"/>
 
 					</div>
 
@@ -301,7 +301,7 @@
 
 					<div class="input-icon left">
 						 <div class="zw">
-                                    <input name="acpicdata" id="acpicdata"  multiple="multiple" type="file" style="display:none" onchange="addpic(this)">
+                                    <input name="acpicdata" id="acpicdata"  multiple="multiple" type="file" style="display:none" onchange="addpic(this)"  required="required">
                                   <a href="javascript:void(0)" onclick="document.getElementById('acpicdata').click();"><div id="picdiv" style='width:100px;height:100px;border:1px solid #666;overflow:hidden;';><img id="acpicture_1" src="images/long.png"></div></a>
                           </div>
 						
@@ -320,10 +320,10 @@
 					<div class="input-icon left">
 
 									<label class="checkbox-inline">
-						<input type="radio" name="acsex" id="acsex_1" value="男" checked> 男
+						<input type="radio" name="acsex" id="acsex_1" value="男" checked  > 男
 					</label>
 					<label class="checkbox-inline">
-						<input type="radio" name="acsex" id="acsex_2"  value="女">女
+						<input type="radio" name="acsex" id="acsex_2"  value="女" >女
 					</label>
 
 					</div>
@@ -343,7 +343,7 @@
 
 
 						      <div class="col-lg-10 error">
-						        <select id="acacademyid" name="acacademyid"class="selectpicker show-tick form-control">
+						        <select id="acacademyid" name="acacademyid"class="selectpicker show-tick form-control"  required="required">
 						        <option value="1" selected>请选择</option>
 						       
 						        </select>
@@ -365,7 +365,7 @@
 
 						<i class="icon-user"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="职称" name="acwork" id="acwork" maxlength="20" value="反贪局局长"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="职称" name="acwork" id="acwork" maxlength="20" value="反贪局局长"  required="required"/>
 
 					</div>
 
@@ -383,7 +383,7 @@
 
 						<i class="icon-phone"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="请输入手机号码" name="acphone" id="acphone" value="13207343805"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="请输入手机号码" name="acphone" id="acphone" value="13207343805"  required="required"/>
 						<label id="errmsgphone" style="display:none; color:red">你输入的格式不正确哦，请重修输入</label>
 					</div>
 
@@ -399,7 +399,7 @@
 
 					<label class="checkbox">
 
-					<input type="checkbox" name="tnc"/> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+					<input type="checkbox" name="tnc"  required="required"/> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
 
 					</label>  
 

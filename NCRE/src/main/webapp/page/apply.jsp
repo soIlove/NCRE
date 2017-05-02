@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -106,7 +107,10 @@
 	<!-- BEGIN HEADER -->
 
 	<div class="header navbar navbar-inverse navbar-fixed-top">
-
+		
+		
+			
+			<input type="hidden" id="sname_2" value="${loginUser.sname} }">
 		<!-- BEGIN TOP NAVIGATION BAR -->
 
 		<div class="navbar-inner">
@@ -144,7 +148,7 @@
 						<a href="index.jsp" class="dropdown-toggle" data-toggle="dropdown">
 
 
-						<span class="username"><%=session.getAttribute("loginUser") %></span>
+						<span class="username">${loginUser.sname} </span>
 
 						<i class="icon-angle-down"></i>
 
@@ -258,11 +262,11 @@
 
 					</a>
 
-					<ul class="sub-menu">
+					<ul class="sub-menu" style="display:block">
 
 					
 
-						<li >
+						<li class="active" >
 
 							<a href="page/apply.jsp">
 
@@ -491,8 +495,8 @@
 
 							<div class="portlet-body form">
 
-								<form action="index.jsp" class="form-horizontal" id="submit_form" enctype="multipart/form-data">
-
+								<form action="javascript:void(0)" class="form-horizontal" id="submit_form" enctype="multipart/form-data" method="post">
+			
 									<div class="form-wizard">
 
 										<div class="navbar steps">
@@ -572,13 +576,17 @@
 
 												<h3 class="block">完善报名信息</h3>
 												
+												<input type="hidden" id="sid_2" name="sid" value="${loginUser.sid}">
+												
+												<input type="hidden" id="tename" name="tename" value="">
+												
 												<div class="control-group">
 
 													<label class="control-label">姓名<span class="required">*</span></label>
 
 													<div class="controls">
 
-														<input type="text" class="span6 m-wrap" name="sname" required="required" id="sname"/>
+														<input type="text" class="span6 m-wrap" name="sname" required="required" id="sname" value="${loginUser.sname }"/>
 
 														<span class="help-inline"></span>
 
@@ -589,10 +597,10 @@
 		                                        <label class="control-label">性别<span class="required">*</span></label>
 															<div class="controls">
 														  <label class="radio-inline">
-															  &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex" value="男" checked >男
+															  &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="ssex" value="男" checked >男
 														</label>
 														<label class="radio-inline">
-														&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex" value="女">女
+														&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="ssex" value="女">女
 														</label>
 															</div>
 												  </div>
@@ -602,14 +610,30 @@
 
 													<div class="controls">
 														<div id="datetimepicker" class="input-append date">
-														      <input type="text" id="ebirthday"></input>
+														      <input type="text" id="ebirthday" name="ebirthday"></input>
 														      <span class="add-on" style="height:20px;"><i class="icon-th"></i></span>
 														    </div>
 														<span class="help-inline"></span>
 
 													</div>
 
-												</div>
+												
+											    </div> 
+											    
+											    <div class="control-group">
+
+													<label class="control-label">证件头像<span class="required">*</span></label>
+
+													<div class="controls">
+														<div class="zw">
+                                				    <input name="epicdata" id="epicdata"  multiple="multiple" type="file" style="display:none" onchange="addpic(this)"  required="required">
+                               					   <a href="javascript:void(0)" onclick="document.getElementById('epicdata').click();"><div id="picdiv" style='width:100px;height:100px;border:1px solid #666;overflow:hidden;';><img id="pic" alt="证件照" src="images/long.png"></div></a>
+                         							 </div>	
+											    </div>
+
+													</div>
+
+												
 												
 												<div class="control-group">
 
@@ -678,12 +702,14 @@
 
 												</div>
 												
-												<div class="control-group">
-													<img src="media/image/8.jpg" alt="证件照" class="img-thumbnail" id="pic" style="position:absolute;margin-left:800px;margin-top:-500px;">
-													<a href="javascript:;" class="file">上传照片
-    												<input type="file" name="epicture" onchange="chgPic(this)" multiple="multiple">
-													</a>
-											    </div>
+											<!-- 	<div class="control-group">
+													<img src="media/image/8.jpg"  class="img-thumbnail" id="pic" style="position:absolute;margin-left:800px;margin-top:-500px;">
+													
+    												<input  name="epicdata" id ="epicdata" onchange="chgPic(this)" multiple="multiple" type="file" value="上传文件">
+													
+													
+													
+											    </div> -->
 												
 											</div>
 												
@@ -865,11 +891,11 @@
 
 											</a>
 
-											<a href="javascript:;" class="btn green button-submit" id="subTest">
+											<input type="submit" class="btn green button-submit" id="subTest" value="提交">
 
-											Submit <i class="m-icon-swapright m-icon-white"></i>
+											 <i class="m-icon-swapright m-icon-white"></i>
 
-											</a>
+											
 
 										</div>
 
@@ -968,11 +994,15 @@
 
 	<script type="text/javascript" src="media/js/select2.min.js"></script>
 	
+	<script src="easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+	<script src="easyui/jquery.easyui.min.js" type="text/javascript"></script>
+	
 	<script type="text/javascript" src="js/apply.js"></script>
 
 	<!-- END PAGE LEVEL PLUGINS -->
 
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	
 
 	<script src="media/js/app.js"></script>
 

@@ -1,13 +1,11 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 
-<!--[if !IE]><!-->
-<html lang="en">
-<!--<![endif]-->
 
 <!-- BEGIN HEAD -->
 
@@ -71,6 +69,9 @@
 	<!-- BEGIN HEADER -->
 
 	<div class="header navbar navbar-inverse navbar-fixed-top">
+	
+			<input type="hidden" id="sid" value="${loginUser.sid} }">
+			<input type="hidden" id="sid" value="${loginUser.sname} }">
 
 		<!-- BEGIN TOP NAVIGATION BAR -->
 
@@ -103,7 +104,7 @@
 					<li class="dropdown user"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> <!-- <img alt="" src="media/image/avatar1_small.jpg" />-->
 
-							<span class="username">${loginUser}</span> <i
+							<span class="username">${loginUser.sname}</span> <i
 							class="icon-angle-down"></i>
 
 					</a>

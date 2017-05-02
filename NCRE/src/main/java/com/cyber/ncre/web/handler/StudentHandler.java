@@ -1,5 +1,7 @@
 package com.cyber.ncre.web.handler;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +21,19 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.cyber.ncre.entity.CompuTestMsg;
 import com.cyber.ncre.entity.Eenrollmsg;
 import com.cyber.ncre.entity.Student;
 import com.cyber.ncre.entity.Testclas;
 import com.cyber.ncre.entity.academy;
 import com.cyber.ncre.entity.clazz;
 import com.cyber.ncre.service.StudentService;
+import com.cyber.ncre.util.ServletUtil;
 
 @Controller
 @RequestMapping("/user")
@@ -47,7 +53,7 @@ public class StudentHandler {
 		LogManager.getLogger().debug("进入StudentHandler 处理login()");
 		Student student = studentService.login(sxid,spwd);
 		if(student!=null){
-			map.put("loginUser", student.getSname());
+			map.put("loginUser",student );
 			result=true;
 		}else{
 			result=false;
@@ -143,43 +149,49 @@ public class StudentHandler {
 	
 	@RequestMapping("/apply") // 报名申请
 	@ResponseBody
-	public boolean apply(Eenrollmsg apply,String sname,String ssex,String tename){
+	public boolean apply(Eenrollmsg apply,int sid,String ssex,String tename,@RequestParam(name="epicdata", required=false)MultipartFile epicture){
+		
+		System.err.println(epicture+"************************************************************88");
+		
+		if(epicture!=null && !epicture.isEmpty()){
+			try {
+				File file = new File(ServletUtil.UPLOAD_DIR, epicture.getOriginalFilename());
+				epicture.transferTo(file);// 上传文件
+				apply.setEpicture("/" + ServletUtil.UPLOAD_DIR_NAME + "/" + epicture.getOriginalFilename());
+
+				System.out.println("当前对象为：" + apply);
+				LogManager.getLogger().debug("头像上传成功，上传地址为:" + file);
+			} catch (IllegalStateException | IOException e) {
+				LogManager.getLogger().debug("头像上传失败：", e);
+			}
+		} else {
+			apply.setEpicture("");
+		}
+		
 		LogManager.getLogger().debug("进入StudentHandler 处理apply()");
-		Boolean result=studentService.apply(apply,sname,ssex,tename);
+		Boolean result=studentService.apply(apply,sid, ssex,tename);
 		return result;
 	}
 	
-	@RequestMapping("/show") // 报名申请
-	@ResponseBody
-	public Eenrollmsg show(String sname){
-		LogManager.getLogger().debug("进入StudentHandler 处理show()");
-		Eenrollmsg msg=studentService.show(sname);
-		System.out.println(msg);
-		return msg;
-	}
+
 	
-	@RequestMapping("/tests") // 报名申请
-	@ResponseBody
-	public List<String> testes(String sname){
-		LogManager.getLogger().debug("进入StudentHandler 处理testes()");
-		List<String> enames=studentService.testes(sname);
-		return enames;
-	}
 	
-	@RequestMapping("/stuation")
+	@RequestMapping("/ifbaomin") // 判断是否完善信息
 	@ResponseBody
-	public String getstuation(String sname,ServletRequest request, ServletResponse response){
-		LogManager.getLogger().debug("进入StudentHandler 处理getstuation()");
-		try {
-			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+	public CompuTestMsg ifbaomin(int sid){
+		LogManager.getLogger().debug("进入StudentHandler 处理ifbaomin()");
+		CompuTestMsg cS= studentService.ifbaomin(sid);
+		System.out.println("CS"+cS);
+		return cS;
 		
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		String statu=studentService.getstuation(sname);
-		return statu;
+	
+	}
+	@RequestMapping("/getmsg") // 判断是否完善信息
+	@ResponseBody
+	public Eenrollmsg getmsg(int sid){
+		LogManager.getLogger().debug("进入StudentHandler 处理ifbaomin()");
+		return studentService.getmsg(sid);
+	
 	}
 	
 }
