@@ -426,7 +426,7 @@
 
 								<i class="icon-home"></i>
 
-								<a href="index.html">Home</a> 
+								<a href="index.jsp">主页</a> 
 
 								<span class="icon-angle-right"></span>
 
@@ -434,13 +434,13 @@
 
 							<li>
 
-								<a href="#">Form Stuff</a>
+								<a href="index.jsp">报考版块</a>
 
 								<span class="icon-angle-right"></span>
 
 							</li>
 
-							<li><a href="#">Form Components</a></li>
+							<li><a href="page/profile_msg.jsp">个人报考信息</a></li>
 
 						</ul>
 

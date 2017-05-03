@@ -92,7 +92,7 @@
 
 						<i class="icon-user"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="请输入邮箱" name="email" id="acemail_1" value="1914588314@qq.com"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="请输入邮箱" name="email" id="acemail_1" />
 
 					</div>
 
@@ -110,7 +110,7 @@
 
 						<i class="icon-lock"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="请输入密码" name="acloginpwd" id="acloginpwd_1" value="a"/>
+						<input class="m-wrap placeholder-no-fix" type="password" placeholder="请输入密码" name="acloginpwd" id="acloginpwd_1" />
 
 					</div>
 

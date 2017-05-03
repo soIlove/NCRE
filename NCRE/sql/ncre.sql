@@ -64,7 +64,7 @@ drop table clazz
 create table news(				
 	news_id int primary key,	--新闻id
 	news_name varchar2(60),		--标题名称	
-	news_text varchar2(1000),	--新闻正文(不得超过五百字)
+	news_text varchar2(1000),	--新闻正文
 	news_pic varchar2(100),		--新闻图片
 	news_date date				--发布时间
 );

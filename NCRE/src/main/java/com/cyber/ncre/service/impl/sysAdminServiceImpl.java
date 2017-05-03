@@ -128,6 +128,11 @@ public class sysAdminServiceImpl implements sysAdminService {
 		return sysAdminMapper.findbaoMsg();
 	}
 
+	@Override
+	public news getnewsMsgById(news news) {
+		return sysAdminMapper.findnewsById(news);
+	}
+
 	
 
 }

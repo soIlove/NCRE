@@ -47,6 +47,16 @@ var FormWizard = function () {
                         required: true,
                         equalTo: "#submit_form_password"
                     },
+                    eidentif: {
+                    	minlength: 18,
+                    	maxlength: 18,
+                    	required: true,
+                    },
+                    ephone: {
+                    	minlength: 11,
+                    	maxlength: 11,
+                    	required: true,
+                    },
                     //profile
                     fullname: {
                         required: true

@@ -8,7 +8,7 @@ $("#loginBtn").click(function(){
 				location.href="/NCRE/index.jsp";
 			}else{
 				alert("用户名或密码不正确");
-				location.href="/NCRE/page/login.jsp";
+				location.href="/NCRE/page/login.html";
 			}
 		})
 	}
@@ -68,17 +68,5 @@ $("#academy").change(function(){
 	})
 });
 
-$("#register").click(function(){
-	$.post("user/register",{sname:$("#sname").val(),spwd:$("#register_password").val(),semail:$("#semail").val(),
-		sacademy:$("#academy option:selected").val(),sclass:$("#classes option:selected").val()},function(data){
-		if(data!=null){
-			alert("注册成功！您的账号为"+data+"请妥善保管！")
-			jQuery('.login-form').show();
-            jQuery('.register-form').hide();
-            $("#sxid").val(data);
-		}else{
-			alert("注册失败！")
-		}
-		
-	})
-});
+
+

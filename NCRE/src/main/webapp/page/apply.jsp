@@ -155,21 +155,7 @@
 						</a>
 
 						<ul class="dropdown-menu">
-
-							<li><a href="extra_profile.html"><i class="icon-user"></i> My Profile</a></li>
-
-							<li><a href="page_calendar.html"><i class="icon-calendar"></i> My Calendar</a></li>
-
-							<li><a href="inbox.html"><i class="icon-envelope"></i> My Inbox(3)</a></li>
-
-							<li><a href="index.jsp"><i class="icon-tasks"></i> My Tasks</a></li>
-
-							<li class="divider"></li>
-
-							<li><a href="extra_lock.html"><i class="icon-lock"></i> Lock Screen</a></li>
-
 							<li><a href="page/login.html"><i class="icon-key"></i> Log Out</a></li>
-
 						</ul>
 
 					</li>
@@ -453,7 +439,7 @@
 
 							</li>
 
-							<li><a href="index.jsp">申请报名</a></li>
+							<li><a href="page/apply.jsp">申请报名</a></li>
 
 						</ul>
 
@@ -586,7 +572,7 @@
 
 													<div class="controls">
 
-														<input type="text" class="span6 m-wrap" name="sname" required="required" id="sname" value="${loginUser.sname }"/>
+														<input type="text" class="span6 m-wrap" name="sname" readonly="readonly" id="sname" value="${loginUser.sname }"/>
 
 														<span class="help-inline"></span>
 
@@ -610,7 +596,7 @@
 
 													<div class="controls">
 														<div id="datetimepicker" class="input-append date">
-														      <input type="text" id="ebirthday" name="ebirthday"></input>
+														      <input type="text" id="ebirthday" name="ebirthday" required="required"></input>
 														      <span class="add-on" style="height:20px;"><i class="icon-th"></i></span>
 														    </div>
 														<span class="help-inline"></span>
@@ -627,7 +613,7 @@
 													<div class="controls">
 														<div class="zw">
                                 				    <input name="epicdata" id="epicdata"  multiple="multiple" type="file" style="display:none" onchange="addpic(this)"  required="required">
-                               					   <a href="javascript:void(0)" onclick="document.getElementById('epicdata').click();"><div id="picdiv" style='width:100px;height:100px;border:1px solid #666;overflow:hidden;';><img id="pic" alt="证件照" src="images/long.png"></div></a>
+                               					   <a href="javascript:void(0)" onclick="document.getElementById('epicdata').click();"><div id="picdiv" style='width:100px;height:100px;border:1px solid #666;'><img style="width:98px;height:98px;" id="pic" alt="证件照" src="images/not_pic.jpg"></div></a>
                          							 </div>	
 											    </div>
 
@@ -641,7 +627,7 @@
 
 													<div class="controls">
 
-														<input type="text" class="span6 m-wrap" name="enation" id="enation"/>
+														<input type="text" class="span6 m-wrap" name="enation" required="required" id="enation"/>
 
 														<span class="help-inline"></span>
 
@@ -681,7 +667,7 @@
 
 													<div class="controls">
 
-														<input type="text" class="span6 m-wrap" name="ework" id="ework"/>
+														<input type="text" class="span6 m-wrap" name="ework" id="ework" required="required"/>
 
 														<span class="help-inline"></span>
 
@@ -694,7 +680,7 @@
 
 													<div class="controls">
 
-														<input type="text" class="span6 m-wrap" name="eaddr" id="eaddr"/>
+														<input type="text" class="span6 m-wrap" name="eaddr" id="eaddr" required="required"/>
 
 														<span class="help-inline"></span>
 
@@ -771,7 +757,7 @@
 
 													<div class="controls">
 
-														<span class="text display-value" data-display="username" id="name"></span>
+														<span class="text display-value" data-display="username" id="name" ></span>
 
 													</div>
 

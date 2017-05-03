@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,6 +27,13 @@ public class stuAdminHandler {
 		model.setViewName("page/stunews");
 		model.addObject("newsMsg",news);
 		return model;
+	}
+	
+	/*  搜索新闻详情    */
+	@RequestMapping("/detailnews")
+	@ResponseBody
+	public news detailnews(news news){
+		return sysAdminService.getnewsMsgById(news);
 	}
 
 }

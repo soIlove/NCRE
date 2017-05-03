@@ -51,5 +51,7 @@ public interface sysAdminService{
 	boolean doaddkao(kaoroom kaoroom);
 
 	List<CompuTestMsg> dobaoMsg();
+
+	news getnewsMsgById(news news);
 	
 }

@@ -163,22 +163,28 @@ var Login = function () {
 
 	            messages: { // custom messages for radio buttons and checkboxes
 	                tnc: {
-	                    required: "请先同意协议"
+	                    required: ""
 	                },
 	                sxid:{
 	                	required:"学号不能为空"
 	                },
 	                spwd:{
-	                	required:"密码不能为空"
+	                	required:"请输入密码"
+	                },
+	                rpassword:{
+	                	required:"两次密码输入不一致"
+	                },
+	                school:{
+	                	required:"请选择学校"
 	                },
 	                sname:{
-	                	required:"姓名不能为空"
+	                	required:"请输入姓名"
 	                },
 	                sacademy:{
-	                	required:"学院名不能为空"
+	                	required:"请选择学院"
 	                },
 	                aclass:{
-	                	required:"班级不能为空"
+	                	required:"请选择班级"
 	                },
 	                semail:{
 	                	required:"邮箱不能为空"
@@ -208,8 +214,15 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	              /*  window.location.href = "index.html";*/
-	            	return false;
+	            	$.post("user/register",{sname:$("#sname").val(),spwd:$("#register_password").val(),semail:$("#semail").val(),
+	        			sacademy:$("#academy option:selected").val(),sclass:$("#classes option:selected").val()},function(data){
+	        			if(data!=null){
+	        				alert("注册成功！您的账号为"+data+"请妥善保管！")
+	        				jQuery('.login-form').show();
+	        	            jQuery('.register-form').hide();
+	        	            $("#sxid").val(data);
+	        			}
+	        		})
 	            }
 	        });
 

@@ -56,4 +56,6 @@ public interface sysAdminMapper {
 
 	List<CompuTestMsg> findbaoMsg();
 
+	news findnewsById(news news);
+
 }

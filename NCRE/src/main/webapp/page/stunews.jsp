@@ -57,9 +57,15 @@
 
 <link rel="stylesheet" href="media/css/DT_bootstrap.css" />
 
+<link rel="stylesheet" href="easyui/themes/icon.css" />
+
+<link rel="stylesheet" href="easyui/themes/gray/easyui.css" />
+
 <!-- END PAGE LEVEL STYLES -->
 
 <link rel="shortcut icon" href="media/image/favicon.ico" />
+
+
 
 </head>
 
@@ -70,13 +76,13 @@
 <body class="page-header-fixed">
 
 	<!-- BEGIN HEADER -->
-	
+
 
 	<div class="header navbar navbar-inverse navbar-fixed-top">
 
 
-			<input type="hidden" id="sid_2" value="${loginUser.sid} }">
-			<input type="hidden" id="sname_2" value="${loginUser.sname} }">
+		<input type="hidden" id="sid_2" value="${loginUser.sid} }"> <input
+			type="hidden" id="sname_2" value="${loginUser.sname} }">
 
 		<!-- BEGIN TOP NAVIGATION BAR -->
 
@@ -154,64 +160,38 @@
 
 
 
-				<li class="start active ">
+				<li class="start active "><a href="stuadmin/findnews"> <i
+						class="icon-home"></i> <span class="title">报考新闻</span> <span
+						class="selected"></span>
 
-					<a href="stuadmin/findnews">
-
-					<i class="icon-home"></i> 
-
-					<span class="title">报考新闻</span>
-
-					<span class="selected"></span>
-
-					</a>
-
-				</li>
+				</a></li>
 
 
 
-				<li class="">
+				<li class=""><a href="javascript:;"> <i class="icon-table"></i>
 
-					<a href="javascript:;">
+						<span class="title">报考版块</span> <span class="arrow "></span>
 
-					<i class="icon-table"></i> 
-
-					<span class="title">报考版块</span>
-
-					<span class="arrow "></span>
-
-					</a>
+				</a>
 
 					<ul class="sub-menu">
 
-					
 
-					
-						<li >
 
-							<a href="page/apply.jsp">
 
-							申请报名</a>
+						<li><a href="page/apply.jsp"> 申请报名</a></li>
 
-						</li>
-						
-						
-						<li class="active">
 
-							<a href="page/profile_msg.jsp">
-
-							个人报考信息</a>
+						<li class="active"><a href="page/profile_msg.jsp"> 个人报考信息</a>
 
 						</li>
 
 
-					</ul>
+					</ul></li>
 
-				</li>
 
-			
 
-			
+
 
 			</ul>
 
@@ -269,7 +249,8 @@
 
 								<ul class="inline">
 
-									<li class="color-black current color-default" data-style="default"></li>
+									<li class="color-black current color-default"
+										data-style="default"></li>
 
 									<li class="color-blue" data-style="blue"></li>
 
@@ -283,59 +264,41 @@
 
 								</ul>
 
-								<label>
-
-									<span>Layout</span>
-
-									<select class="layout-option m-wrap small">
+								<label> <span>Layout</span> <select
+									class="layout-option m-wrap small">
 
 										<option value="fluid" selected>Fluid</option>
 
 										<option value="boxed">Boxed</option>
 
-									</select>
+								</select>
 
-								</label>
-
-								<label>
-
-									<span>Header</span>
-
-									<select class="header-option m-wrap small">
+								</label> <label> <span>Header</span> <select
+									class="header-option m-wrap small">
 
 										<option value="fixed" selected>Fixed</option>
 
 										<option value="default">Default</option>
 
-									</select>
+								</select>
 
-								</label>
-
-								<label>
-
-									<span>Sidebar</span>
-
-									<select class="sidebar-option m-wrap small">
+								</label> <label> <span>Sidebar</span> <select
+									class="sidebar-option m-wrap small">
 
 										<option value="fixed">Fixed</option>
 
 										<option value="default" selected>Default</option>
 
-									</select>
+								</select>
 
-								</label>
-
-								<label>
-
-									<span>Footer</span>
-
-									<select class="footer-option m-wrap small">
+								</label> <label> <span>Footer</span> <select
+									class="footer-option m-wrap small">
 
 										<option value="fixed">Fixed</option>
 
 										<option value="default" selected>Default</option>
 
-									</select>
+								</select>
 
 								</label>
 
@@ -343,7 +306,7 @@
 
 						</div>
 
-						<!-- END BEGIN STYLE CUSTOMIZER --> 
+						<!-- END BEGIN STYLE CUSTOMIZER -->
 
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 
@@ -355,15 +318,8 @@
 
 						<ul class="breadcrumb">
 
-							<li>
-
-								<i class="icon-home"></i>
-
-								<a href="index.jsp">主页</a> 
-
-								<i class="icon-angle-right"></i>
-
-							</li>
+							<li><i class="icon-home"></i> <a href="index.jsp">主页</a> <i
+								class="icon-angle-right"></i></li>
 
 							<li><a href="page/stunews.jsp">报考新闻</a></li>
 
@@ -387,27 +343,14 @@
 
 						<div class="row-fluid">
 							<c:forEach var="newsinfo" items="${newsMsg}">
-							
-							<div class="span4" style="margin-left:12px;">
-
-								<div class="news-blocks" style="margin-bottom: 50px;">
-
-									<h3><a href="page/stunews.jsp">${newsinfo.news_name}</a></h3>
-
-									<div class="news-block-tags" style="margin-bottom: 15px">
-
-										<strong>${newsinfo.news_date}</strong>
-
-									</div>
-
-									<p><img class="news-block-img pull-right" src="${newsinfo.news_pic}" style="width:345px;height: 185px;margin-bottom: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<p style="overflow: auto;height: 120px;">${newsinfo.news_text}</p></p>
-
-								</div>
-
-							</div>
+								<h5>
+									<input type="hidden" value="${ newsinfo.news_id}"> <a
+										href="javascript:void(0)" onclick="openView(this)"
+										style="margin-left: 20px;">${newsinfo.news_name}</a> <b
+										style="float: right; margin-right: 300px;">${newsinfo.news_date}</b>
+								</h5>
 							</c:forEach>
-						</div>	
+						</div>
 					</div>
 				</div>
 			</div>
@@ -422,6 +365,30 @@
 			<span class="go-top"> <i class="icon-angle-up"></i>
 
 			</span>
+
+		</div>
+	</div>
+
+	<div id="view_show">
+
+		<div class=""
+			style="margin-bottom: 50px;">
+
+			<h3 style="text-align: center;">
+				<a href="javascript:void(0)" id="detailName"></a>
+			</h3>
+
+			<div class="news-block-tags" style="margin-bottom: 15px;text-align: center;">
+
+				<strong id="detailTime" ></strong>
+
+			</div>
+
+			<p style="text-align: center;" id="detailImg"></p>
+
+			<p id="detailText"
+				style=" width: 450px; float: left; text-indent:2em; margin-left: 70px; margin-bottom:40px; line-height: 25px;">
+			</p>
 
 		</div>
 
@@ -478,6 +445,12 @@
 	<script src="media/js/app.js"></script>
 
 	<script src="media/js/table-editable.js"></script>
+
+
+	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+
+	<script type="text/javascript" src="js/stunews.js"></script>
+
 
 	<script>
 		jQuery(document).ready(function() {

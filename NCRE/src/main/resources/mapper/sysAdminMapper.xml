@@ -136,4 +136,9 @@
       left join academy ac
       on st.sacademy=ac.aname
    </select>
+   
+   <select id="findnewsById" resultType="news" parameterType="news">
+   		select news_id,news_name,news_text,news_pic,to_char(news_date,'yyyy-mm-dd') news_date from news
+   		where news_id = #{news_id}  order by news_date desc
+   </select>
 </mapper>
